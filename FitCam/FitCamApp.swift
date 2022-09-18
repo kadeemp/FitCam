@@ -12,20 +12,18 @@ struct FitCamApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate2
     
-    @State var isWorkoutSelected:Bool?
-    
-//    @Binding var isWorkoutSelected:Bool?
+ 
+    @State var isWorkoutSelected:Bool = false
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                VStack {
-                    ContentView()
-                }.sheet(isPresented:  $isWorkoutSelected) {
-                    
+                HStack {
+                    ContentView(isWorkoutSelected: $isWorkoutSelected)
                 }
-
-            }
+            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartCamera")), perform: { output  in
+                self.isWorkoutSelected = true
+            })
 //            .sheet(isPresented:
 //
 //                        appDelegate2.$isWorkoutSelected) {

@@ -15,17 +15,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
     
    
     
-    override init() {
-        isWorkoutSelected = false
-    }
-    @Published var isWorkoutSelected:Bool {
-        didSet {
-            if isWorkoutSelected == true {
-                print("workout Selected")
-            }
-        }
-    }
-    
+
     @EnvironmentObject var cameraManager:CameraManager
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -45,12 +35,15 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
                     replyHandler([:])
                     return
                 }
+        let notify = NotificationCenter.default
+        
                 switch request {
                 case "test":
                     replyHandler(["test":"Success"])
                 case "workoutSelected":
                     replyHandler(["workoutSelected":"Success"])
-                    isWorkoutSelected = true
+                    notify.post(name: NSNotification.Name(rawValue: "StartCamera"), object: nil)
+                    
                 default:
                     replyHandler([:])
                 }

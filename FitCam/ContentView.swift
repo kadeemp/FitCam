@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @Binding var isWorkoutSelected:Bool
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-       
+        VStack {
+            Text("Hello, world!")
+                .padding()
+
+        }.fullScreenCover(isPresented: $isWorkoutSelected, content: {
+            Text("Camera View")
+        })
+               
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(isWorkoutSelected: .constant(false))
     }
 }
