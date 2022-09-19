@@ -67,9 +67,9 @@ class CameraManager: ObservableObject {
     }
 
     let device = AVCaptureDevice.default(
-      .builtInWideAngleCamera,
+        .builtInWideAngleCamera,
       for: .video,
-      position: .front)
+      position: .back)
     guard let camera = device else {
       set(error: .cameraUnavailable)
       status = .failed

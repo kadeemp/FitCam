@@ -24,7 +24,11 @@ struct StartView: View {
                             EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 5)
                         )
         }
-        .listStyle(.carousel)
+        .listStyle(.carousel).simultaneousGesture(TapGesture().onEnded({
+            //                workoutManager.selectedWorkout = workoutType
+            //                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
+                            workoutManager.sendTest()
+                        }))
         .onAppear {
             workoutManager.requestAuthorization()
         }
