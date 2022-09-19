@@ -19,6 +19,17 @@ class CameraManager: ObservableObject {
   private let sessionQueue = DispatchQueue(label: "com.raywenderlich.SessionQ")
   private let videoOutput = AVCaptureVideoDataOutput()
   private var status = Status.unconfigured
+    
+    let videoFileOutput = AVCaptureMovieFileOutput()
+    
+    var tempURL: URL? {
+        let directory = NSTemporaryDirectory() as NSString
+        if directory != ""  {
+            let path = directory.appendingPathComponent("video.mov")
+            return URL(fileURLWithPath: path)
+        }
+        return nil
+    }
 
   private init() {
     configure()
@@ -90,7 +101,15 @@ class CameraManager: ObservableObject {
       status = .failed
       return
     }
+      
+      if session.canAddOutput(videoFileOutput) {
+        session.addOutput(videoFileOutput)
 
+      } else {
+        set(error: .cannotAddOutput)
+        status = .failed
+        return
+      }
     if session.canAddOutput(videoOutput) {
       session.addOutput(videoOutput)
 
@@ -125,4 +144,26 @@ class CameraManager: ObservableObject {
       self.videoOutput.setSampleBufferDelegate(delegate, queue: queue)
     }
   }
+    
+    func captureMovie() {
+        guard let connection = videoFileOutput.connection(with: .video) else {
+            return
+        }
+        if connection.isVideoStabilizationSupported {
+            connection.preferredVideoStabilizationMode = .auto
+        }
+        guard let outURL = tempURL else { return }
+//        videoFileOutput.startRecording(to: outURL, recordingDelegate: self)
+    }
 }
+
+//extension CameraManager:NSObject {
+//    
+//    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+//        
+//    }
+//    
+//   
+//    
+//    
+//}

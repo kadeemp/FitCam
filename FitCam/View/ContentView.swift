@@ -10,14 +10,14 @@ import SwiftUI
 struct ContentView: View {
     
     @Binding var isWorkoutSelected:Bool
-    
+    var cameraViewVC = CameraViewVC()
     var body: some View {
         VStack {
             Text("Select a workout on the watch app to start the camera")
                 .padding()
 
         }.fullScreenCover(isPresented: $isWorkoutSelected, content: {
-          CameraView()
+            cameraViewVC
         })
                
     }
