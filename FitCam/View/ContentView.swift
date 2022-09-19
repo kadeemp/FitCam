@@ -17,7 +17,7 @@ struct ContentView: View {
                 .padding()
 
         }.fullScreenCover(isPresented: $isWorkoutSelected, content: {
-            Text("Camera View")
+          CameraView()
         })
                
     }

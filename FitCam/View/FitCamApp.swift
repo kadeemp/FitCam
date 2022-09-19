@@ -21,14 +21,11 @@ struct FitCamApp: App {
                 HStack {
                     ContentView(isWorkoutSelected: $isWorkoutSelected)
                 }
-            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartCamera")), perform: { output  in
+            }
+            
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartCamera")), perform: { output  in
                 self.isWorkoutSelected = true
             })
-//            .sheet(isPresented:
-//
-//                        appDelegate2.$isWorkoutSelected) {
-//                Text("Video")
-//            }
                         .environmentObject(self.appDelegate2)
         }
     }

@@ -12,12 +12,7 @@ import RealmSwift
 import SwiftUI
 
 class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDelegate {
-    
-   
-    
 
-    @EnvironmentObject var cameraManager:CameraManager
-    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
