@@ -38,7 +38,9 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
                 case "workoutSelected":
                     replyHandler(["workoutSelected":"Success"])
                     notify.post(name: NSNotification.Name(rawValue: "StartCamera"), object: nil)
-                    
+                case "workoutStarted":
+                    replyHandler(["workoutStarted":"Success"])
+                    notify.post(name: NSNotification.Name(rawValue: "StartRecording"), object: nil)
                 default:
                     replyHandler([:])
                 }

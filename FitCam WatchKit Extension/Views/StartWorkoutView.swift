@@ -25,6 +25,8 @@ struct StartWorkoutView: View {
 //                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
                 workoutManager.sendWorkoutStartRequest()
             }))
+        }.onAppear {
+            workoutManager.sendWorkoutSelection()
         }
     }
 }

@@ -24,16 +24,20 @@ struct StartView: View {
                             EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 5)
                         )
         }
-        .listStyle(.carousel).simultaneousGesture(TapGesture().onEnded({
-            //                workoutManager.selectedWorkout = workoutType
-            //                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
-                            workoutManager.sendWorkoutSelection()
-                        }))
+        .listStyle(.carousel)
+        
+       
         .onAppear {
             workoutManager.requestAuthorization()
         }
     }
 }
+//    .simultaneousGesture(TapGesture().onEnded({
+//        
+//        //                workoutManager.selectedWorkout = workoutType
+//        //                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
+//                        workoutManager.sendWorkoutSelection()
+//                    }))
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

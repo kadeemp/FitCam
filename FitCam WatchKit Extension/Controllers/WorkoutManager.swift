@@ -17,13 +17,13 @@ class WorkoutManager: NSObject, ObservableObject {
     var timer = Timer()
     let realm = try! Realm()
     var savedWorkout:SavedWorkout!
-    let session = WCSession.default
+
     var selectedWorkout: HKWorkoutActivityType?
     
     //MARK:= Watchkit Message Center
     func sendWorkoutSelection() {
         if WCSession.isSupported() {
-            
+            let session = WCSession.default
             session.sendMessage((["request":"workoutSelected"])) { response in
                 print("received Reply \(response)")
             }
@@ -31,7 +31,7 @@ class WorkoutManager: NSObject, ObservableObject {
             }
     func sendWorkoutStartRequest() {
         if WCSession.isSupported() {
-            
+            let session = WCSession.default
             session.sendMessage((["request":"workoutStarted"])) { response in
                 print("received Reply \(response)")
             }
