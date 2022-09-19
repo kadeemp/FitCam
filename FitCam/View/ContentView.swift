@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Hello, world!")
+            Text("Select a workout on the watch app to start the camera")
                 .padding()
 
         }.fullScreenCover(isPresented: $isWorkoutSelected, content: {

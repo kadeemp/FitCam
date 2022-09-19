@@ -17,25 +17,24 @@ class WorkoutManager: NSObject, ObservableObject {
     var timer = Timer()
     let realm = try! Realm()
     var savedWorkout:SavedWorkout!
-    var selectedWorkout: HKWorkoutActivityType? {
+    let session = WCSession.default
+    var selectedWorkout: HKWorkoutActivityType?
     
-    didSet {
-        guard let selectedWorkout = selectedWorkout else {
-            return
-        }
-        
-//        startSampler()
-        
-    }
-    }
-    func sendTest() {
+    //MARK:= Watchkit Message Center
+    func sendWorkoutSelection() {
         if WCSession.isSupported() {
-            let session = WCSession.default
             
             session.sendMessage((["request":"workoutSelected"])) { response in
                 print("received Reply \(response)")
             }
-
+        }
+            }
+    func sendWorkoutStartRequest() {
+        if WCSession.isSupported() {
+            
+            session.sendMessage((["request":"workoutStarted"])) { response in
+                print("received Reply \(response)")
+            }
         }
             }
     //MARK: - Sampler Setup
@@ -44,8 +43,6 @@ class WorkoutManager: NSObject, ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
             self.sampleWorkoutData()
         })
-
-
 
         savedWorkout = SavedWorkout()
         savedWorkout.date = Date().formatted(date: .abbreviated, time: .standard)

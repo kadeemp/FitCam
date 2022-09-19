@@ -23,7 +23,7 @@ struct StartWorkoutView: View {
             }.simultaneousGesture(TapGesture().onEnded({
 //                workoutManager.selectedWorkout = workoutType
 //                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
-                workoutManager.sendTest()
+                workoutManager.sendWorkoutStartRequest()
             }))
         }
     }

@@ -27,7 +27,7 @@ struct StartView: View {
         .listStyle(.carousel).simultaneousGesture(TapGesture().onEnded({
             //                workoutManager.selectedWorkout = workoutType
             //                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
-                            workoutManager.sendTest()
+                            workoutManager.sendWorkoutSelection()
                         }))
         .onAppear {
             workoutManager.requestAuthorization()
