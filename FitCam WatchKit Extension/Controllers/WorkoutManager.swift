@@ -15,9 +15,30 @@ import WatchConnectivity
 class WorkoutManager: NSObject, ObservableObject {
     
     var timer = Timer()
-    let realm = try! Realm()
+    var realm:Realm!
     var savedWorkout:SavedWorkout!
+ 
+    func setupRealm() {
+       
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(string: documentsDirectory)
+        if #available(watchOSApplicationExtension 9.0, *) {
+            let datapath = docURL?.appending(path: "FitCam.realm")
+            
+            var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
+            do {
+                try realm = Realm(configuration: config)
+                print("realm fileurl \(realm.configuration.fileURL)")
+            } catch {
+                print("failed to setup configuration. Error: \(error)")
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
 
+    }
     var selectedWorkout: HKWorkoutActivityType?
     
     //MARK:= Watchkit Message Center
@@ -52,6 +73,9 @@ class WorkoutManager: NSObject, ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
             self.sampleWorkoutData()
         })
+        guard let realm = realm else {
+            print("REALM NOT CREATED FOR SAMPLER")
+            return}
 
         savedWorkout = SavedWorkout()
         savedWorkout.date = Date().formatted(date: .abbreviated, time: .standard)
@@ -59,7 +83,7 @@ class WorkoutManager: NSObject, ObservableObject {
         
         do {
             try realm.write({
-//                realm.add(savedWorkout)
+                realm.add(savedWorkout)
             })
         }
         catch {
@@ -72,7 +96,10 @@ class WorkoutManager: NSObject, ObservableObject {
     }
     
     func writeWorkoutToDatabase() {
-        
+        guard let realm = realm else {
+            print("REALM NOT CREATED, ",#function)
+            return}
+
         do {
             try realm.write {
                 realm.add(savedWorkout)
@@ -86,6 +113,9 @@ class WorkoutManager: NSObject, ObservableObject {
     var samplerCount = 0
     
     func sampleWorkoutData() {
+        guard let realm = realm else {
+            print("REALM NOT CREATED ",#function)
+            return}
         var date = Date().formatted(date: .abbreviated, time: .omitted)
         var time = Date().formatted(date: .omitted, time: .standard)
         var datapoint = Datapoint()

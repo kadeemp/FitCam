@@ -163,11 +163,13 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
     if let error = error {
       print("error recording Output: \(error)")
     } else {
-        //TODO: Send outputfileURL to watch
-                      print("the outputfileurl is \(outputFileURL) \n")
+
+                      
         if WCSession.isSupported() {
+            print("WC is supported ")
             let session = WCSession.default
             if session.isWatchAppInstalled {
+                print("Watch app is installed ")
                 do {
                     try session.updateApplicationContext(["OutputURLUpdate":outputFileURL.absoluteString])
                 } catch {

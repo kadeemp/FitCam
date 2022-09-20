@@ -20,6 +20,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         if let outURLUpdate = applicationContext["OutputURLUpdate"] as? String {
             print("OutputURL Received! \(outURLUpdate)")
             //TODO:= Post notification with URL as the object.
+            let notify = NotificationCenter.default
+            notify.post(Notification(name: Notification.Name("updateVideoURL"), object: outURLUpdate ))
         } else {
             print(applicationContext,2)
         }

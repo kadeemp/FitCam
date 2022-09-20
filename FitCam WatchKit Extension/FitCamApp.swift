@@ -19,7 +19,9 @@ struct FitCamApp: App {
         WindowGroup {
             NavigationView {
                 StartView()
-            }
+            }.onAppear(perform: {
+                workoutManager.setupRealm()
+            })
             .sheet(isPresented: $workoutManager.showingSummaryView) {
                 SummaryView()
             }

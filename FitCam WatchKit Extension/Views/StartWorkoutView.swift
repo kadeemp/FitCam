@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HealthKit
+import RealmSwift
 
 struct StartWorkoutView: View {
     
@@ -21,13 +22,44 @@ struct StartWorkoutView: View {
                     Text("Start Workout")
               
             }.simultaneousGesture(TapGesture().onEnded({
-//                workoutManager.selectedWorkout = workoutType
-//                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
+                workoutManager.selectedWorkout = workoutType
+                workoutManager.startWorkout(workoutType: workoutType ?? .crossTraining)
                 workoutManager.sendWorkoutStartRequest()
             }))
         }.onAppear {
             workoutManager.sendWorkoutSelection()
-        }
+        }.onReceive(NotificationCenter.default.publisher(for: Notification.Name("updateVideoURL")), perform: { output  in
+            if output != nil {
+                if workoutManager.savedWorkout != nil {
+                    print("saved workout is not nil \n \n")
+                    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+                    let documentsDirectory = paths[0]
+                    let docURL = URL(string: documentsDirectory)
+                    if #available(watchOSApplicationExtension 9.0, *) {
+                        let datapath = docURL?.appending(path: "FitCam.realm")
+                        
+                        var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
+                        do {
+                            var realm:Realm!
+                         try realm = Realm(configuration: config)
+                           
+                            try realm.write({
+                                workoutManager.savedWorkout.videoURL = output.object as! String
+                                print("successful change of data")
+                            })
+                        } catch {
+                            print("failed to setup configuration. Error: \(error)")
+                        }
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    
+                   
+                    print(workoutManager.savedWorkout,1)
+                }
+
+            }
+         })
     }
 }
 

@@ -13,6 +13,7 @@ class SavedWorkout: Object {
     @Persisted @objc dynamic var workoutType = ""
     @Persisted @objc dynamic var date:String = Date().formatted(date: .abbreviated, time: .standard)
     @Persisted var dataPoints = List<Datapoint>()
+    @Persisted var videoURL = ""
     
 }
 
