@@ -36,7 +36,16 @@ class WorkoutManager: NSObject, ObservableObject {
                 print("received Reply \(response)")
             }
         }
+
+    }
+    func sendWorkoutStopRequest() {
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.sendMessage((["request":"workoutStopped"])) { response in
+                print("received Reply \(response)")
             }
+        }
+    }
     //MARK: - Sampler Setup
     
     func startSampler() {
@@ -173,7 +182,7 @@ class WorkoutManager: NSObject, ObservableObject {
                     writeWorkoutToDatabase()
 
         count += 1
-        print(savedWorkout)
+//        print(savedWorkout)
     }
     
     @Published var showingSummaryView: Bool = false {
@@ -265,6 +274,7 @@ class WorkoutManager: NSObject, ObservableObject {
     func endWorkout() {
         session?.end()
         stopSampler()
+        sendWorkoutStopRequest()
         showingSummaryView = true
     }
 

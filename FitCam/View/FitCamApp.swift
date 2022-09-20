@@ -19,7 +19,11 @@ struct FitCamApp: App {
         WindowGroup {
             NavigationView {
                 HStack {
-                    ContentView(isWorkoutSelected: $isWorkoutSelected)
+                    if #available(iOS 16.0, *) {
+                        ContentView(isWorkoutSelected: $isWorkoutSelected)
+                    } else {
+                        // Fallback on earlier versions
+                    }
                 }
             }
             

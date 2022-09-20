@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct ContentView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+
     @Binding var isWorkoutSelected:Bool
     var cameraViewVC = CameraViewVC()
     var body: some View {
@@ -17,14 +20,32 @@ struct ContentView: View {
                 .padding()
 
         }.fullScreenCover(isPresented: $isWorkoutSelected, content: {
-            cameraViewVC
+            ZStack {
+                cameraViewVC.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording")), perform: { output  in
+                    print("Recording started")
+                    cameraViewVC.startRecording()
+                 }).onReceive(NotificationCenter.default.publisher(for: Notification.Name("StopRecording")), perform: { output  in
+                     print("Recording stopped")
+                     cameraViewVC.stopRecording()
+                  })
+                Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("X")
+            }
+            }
         })
                
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ContentView(isWorkoutSelected: .constant(false))
+        if #available(iOS 16.0, *) {
+            ContentView(isWorkoutSelected: .constant(false))
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }

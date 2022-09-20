@@ -149,6 +149,7 @@
 		F4EE5EBD28CD64FC00C9EF92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4F2745628D918DC00BF239B /* CameraView_i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView_i.swift; sourceTree = "<group>"; };
 		F4F2745828D9191B00BF239B /* CameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
+		F4F2745A28D98DFF00BF239B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +219,7 @@
 		F46A529328BAEC49007C5C68 /* FitCam */ = {
 			isa = PBXGroup;
 			children = (
+				F4F2745A28D98DFF00BF239B /* Info.plist */,
 				F43A883028C034E300F107E3 /* FitCam.entitlements */,
 				F4EE5EBD28CD64FC00C9EF92 /* AppDelegate.swift */,
 				F477AC4428D8282D00E29A1F /* Extensions */,
@@ -912,8 +914,12 @@
 				DEVELOPMENT_TEAM = 68A9E944ZN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FitCam/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to te camera to record your workouts";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We save your videos in the documentws folder";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to te microphone to record your workouts";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to save photos to your camera roll";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to save recorded videos to your camera roll";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -947,8 +953,12 @@
 				DEVELOPMENT_TEAM = 68A9E944ZN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FitCam/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to te camera to record your workouts";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We save your videos in the documentws folder";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to te microphone to record your workouts";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to save photos to your camera roll";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to save recorded videos to your camera roll";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

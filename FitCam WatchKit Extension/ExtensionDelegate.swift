@@ -16,6 +16,15 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         }
     }
     
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        if let outURLUpdate = applicationContext["OutputURLUpdate"] as? String {
+            print("OutputURL Received! \(outURLUpdate)")
+            //TODO:= Post notification with URL as the object.
+        } else {
+            print(applicationContext,2)
+        }
+    }
+    
     func applicationDidFinishLaunching() {
         if WCSession.isSupported() {
             let session = WCSession.default

@@ -10,12 +10,16 @@ import AVFoundation
 import SwiftUI
 import PhotosUI
 
+import WatchConnectivity
+@available(iOS 16.0, *)
 class CameraViewController: UIViewController {
 
   let captureSession = AVCaptureSession()
   var previewLayer: AVCaptureVideoPreviewLayer!
   var activeInput: AVCaptureDeviceInput!
   let movieOutput = AVCaptureMovieFileOutput()
+
+    
 
   var tempURL: URL? {
     let directory = NSTemporaryDirectory() as NSString
@@ -128,8 +132,21 @@ class CameraViewController: UIViewController {
         print("error: \(error)")
       }
     }
-    guard let outUrl = tempURL else { return }
-    movieOutput.startRecording(to: outUrl, recordingDelegate: self)
+      do {
+          let videoPath = "WorkoutVideos"
+          let uuid = UUID().uuidString
+          var videoDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+          videoDirectory = videoDirectory.appending(path: videoPath)
+   
+          try FileManager.default.createDirectory(atPath: videoDirectory.path, withIntermediateDirectories: true, attributes: nil)
+          videoDirectory = videoDirectory.appending(path: "\(uuid).mov")
+          print("videoDirectory: = \(videoDirectory)")
+          movieOutput.startRecording(to: videoDirectory, recordingDelegate: self)
+      }
+      catch {
+          print("error recording to video directory: \(error)")
+      }
+
   }
 
   public func stopRecording() {
@@ -140,16 +157,31 @@ class CameraViewController: UIViewController {
 
 }
 
+@available(iOS 16.0, *)
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
   func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
     if let error = error {
-      print("error: \(error.localizedDescription)")
+      print("error recording Output: \(error)")
     } else {
+        //TODO: Send outputfileURL to watch
+                      print("the outputfileurl is \(outputFileURL) \n")
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            if session.isWatchAppInstalled {
+                do {
+                    try session.updateApplicationContext(["OutputURLUpdate":outputFileURL.absoluteString])
+                } catch {
+                    print("error sending watch message: \(error)")
+                }
+            }
+        }
+        
       PHPhotoLibrary.requestAuthorization { status in
         if status == .authorized {
           PHPhotoLibrary.shared().performChanges {
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
           } completionHandler: { (success, error) in
+
 
           }
         }

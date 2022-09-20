@@ -17,9 +17,7 @@ struct CameraView: View {
 
 
       ErrorView(error: model.error)
-    }.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording")), perform: { output  in
-       print("Recording started")
-    })
+    }
   }
 }
 

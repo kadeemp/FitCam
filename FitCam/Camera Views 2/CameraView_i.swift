@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct CameraViewVC: UIViewControllerRepresentable {
 
   typealias UIViewControllerType = CameraViewController
