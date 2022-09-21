@@ -15,18 +15,17 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
     //MARK:- FileManager
     
     @available(iOS 16.0, *)
-    func initializeDirectory() {
+    func initializeVideoDirectory() {
         let videoPath = "WorkoutVideos"
         do {
             var documentDirectory = try FileManager.default.url(for: .documentDirectory , in: .userDomainMask, appropriateFor: nil, create: false)
             documentDirectory.append(path: videoPath)
-            print("directory \(documentDirectory.path) \n")
+//            print("directory \(documentDirectory.path) \n")
             let fileExists = FileManager.default.fileExists(atPath: documentDirectory.path)
             if !fileExists {
                 try FileManager.default.createDirectory(atPath: documentDirectory.path, withIntermediateDirectories: true)
                 print("Directory Created")
             } else {
-                print("Files exists. no directory created")
                 let contents = try FileManager.default.contentsOfDirectory(atPath:documentDirectory.path)
                 print("contents \(contents)")
             }
@@ -87,7 +86,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
             session.activate()
         }
         if #available(iOS 16.0, *) {
-            initializeDirectory()
+            initializeVideoDirectory()
         } else {
             // Fallback on earlier versions
         }

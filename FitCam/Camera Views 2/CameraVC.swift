@@ -169,12 +169,14 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
             print("WC is supported ")
             let session = WCSession.default
             if session.isWatchAppInstalled {
-                print("Watch app is installed ")
+                print("Watch app is installed ", #function)
                 do {
                     try session.updateApplicationContext(["OutputURLUpdate":outputFileURL.absoluteString])
                 } catch {
                     print("error sending watch message: \(error)")
                 }
+            } else {
+                print("Watch app not installed", #function)
             }
         }
         
@@ -183,7 +185,7 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
           PHPhotoLibrary.shared().performChanges {
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
           } completionHandler: { (success, error) in
-
+              print("Video saved to photos library")
 
           }
         }

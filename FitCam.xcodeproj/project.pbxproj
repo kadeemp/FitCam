@@ -145,6 +145,8 @@
 		F477AC3E28D820FC00E29A1F /* FrameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameManager.swift; sourceTree = "<group>"; };
 		F477AC4228D8262A00E29A1F /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
 		F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
+		F4A70AB828DA8B7A0080E786 /* FitCam WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FitCam WatchKit App.entitlements"; sourceTree = "<group>"; };
+		F4A70AB928DB8F180080E786 /* FitCam-WatchKit-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FitCam-WatchKit-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F4EE5EBB28CD62F800C9EF92 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		F4EE5EBD28CD64FC00C9EF92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4F2745628D918DC00BF239B /* CameraView_i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView_i.swift; sourceTree = "<group>"; };
@@ -244,6 +246,8 @@
 		F46A52A328BAEC4C007C5C68 /* FitCam WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				F4A70AB928DB8F180080E786 /* FitCam-WatchKit-App-Info.plist */,
+				F4A70AB828DA8B7A0080E786 /* FitCam WatchKit App.entitlements */,
 				F46A52A428BAEC4D007C5C68 /* Assets.xcassets */,
 			);
 			path = "FitCam WatchKit App";
@@ -329,14 +333,14 @@
 			isa = PBXGroup;
 			children = (
 				F46A52B128BAEC4D007C5C68 /* StartView.swift */,
+				F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */,
+				F46A52CD28BAF79F007C5C68 /* SessionPagingView.swift */,
 				F46A52D928BB6FA2007C5C68 /* SummaryView.swift */,
 				F46A52DB28BB7996007C5C68 /* ActivityRingsView.swift */,
 				F46A52B528BAEC4D007C5C68 /* NotificationView.swift */,
 				F46A52D528BB0F35007C5C68 /* ElapsedTimeView.swift */,
 				F46A52D128BAFC6F007C5C68 /* MetricsView.swift */,
 				F46A52D728BB1195007C5C68 /* ControlsView.swift */,
-				F46A52CD28BAF79F007C5C68 /* SessionPagingView.swift */,
-				F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -853,11 +857,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit App/FitCam WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68A9E944ZN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = FitCam_WatchKit_Extension;
+				INFOPLIST_FILE = "FitCam-WatchKit-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = KAP.FitCam;
@@ -880,11 +886,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit App/FitCam WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68A9E944ZN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = FitCam_WatchKit_Extension;
+				INFOPLIST_FILE = "FitCam-WatchKit-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = KAP.FitCam;
@@ -915,6 +923,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitCam/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to te camera to record your workouts";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We save your videos in the documentws folder";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to te microphone to record your workouts";
@@ -954,6 +963,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitCam/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to te camera to record your workouts";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We save your videos in the documentws folder";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to te microphone to record your workouts";

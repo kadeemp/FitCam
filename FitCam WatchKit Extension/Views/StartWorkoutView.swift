@@ -29,23 +29,22 @@ struct StartWorkoutView: View {
         }.onAppear {
             workoutManager.sendWorkoutSelection()
         }.onReceive(NotificationCenter.default.publisher(for: Notification.Name("updateVideoURL")), perform: { output  in
-            if output != nil {
+           
                 if workoutManager.savedWorkout != nil {
                     print("saved workout is not nil \n \n")
-                    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-                    let documentsDirectory = paths[0]
-                    let docURL = URL(string: documentsDirectory)
+                    let appGroupURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.rileytestut.AltStore.68A9E944ZN")
+
                     if #available(watchOSApplicationExtension 9.0, *) {
-                        let datapath = docURL?.appending(path: "FitCam.realm")
+                        let datapath = appGroupURL?.appending(path: "FitCam-db.realm")
                         
-                        var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
+                        var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: false)
                         do {
                             var realm:Realm!
                          try realm = Realm(configuration: config)
                            
                             try realm.write({
                                 workoutManager.savedWorkout.videoURL = output.object as! String
-                                print("successful change of data")
+                                
                             })
                         } catch {
                             print("failed to setup configuration. Error: \(error)")
@@ -59,7 +58,7 @@ struct StartWorkoutView: View {
                 }
 
             }
-         })
+         )
     }
 }
 
