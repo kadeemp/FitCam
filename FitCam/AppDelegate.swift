@@ -64,6 +64,46 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
               
         
     }
+    
+    func nukeRealm() {
+        
+            DispatchQueue.main.async {
+                do {
+                    let workouts = self.realm.objects(SavedWorkout.self)
+                    try self.realm.write({
+                        self.realm.deleteAll()
+                    })
+                    print("Realm successfully nuked")
+                }
+                catch {
+                    print("Error nuking Realm")
+                }
+            }
+    }
+    @available(iOS 16.0, *)
+    func nukeDirectory() {
+        let videoPath = "WorkoutVideos"
+        do {
+            var documentDirectory = try FileManager.default.url(for: .documentDirectory , in: .userDomainMask, appropriateFor: nil, create: false)
+            documentDirectory.append(path: videoPath)
+//            print("directory \(documentDirectory.path) \n")
+            let fileExists = FileManager.default.fileExists(atPath: documentDirectory.path)
+        
+            if fileExists {
+                let contents = try FileManager.default.contentsOfDirectory(atPath:documentDirectory.path)
+                for file in contents {
+                    print("\(documentDirectory.path) / \(file)")
+                    try FileManager.default.removeItem(atPath: documentDirectory.path + "/" + file)
+                }
+                print("contents \(contents)")
+            }
+            
+        }
+        catch {
+            print("Error Deleting documents directory")
+            print(error,"\n")
+        }
+    }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
@@ -146,7 +186,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
         if #available(iOS 16.0, *) {
             initializeRealm()
             initializeVideoDirectory()
-        } else {
+                   } else {
             // Fallback on earlier versions
         }
         return true
