@@ -20,12 +20,10 @@ class WorkoutManager: NSObject, ObservableObject {
  
     func setupRealm() {
 //
-//        let newDirectory:URL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.rileytestut.AltStore.68A9E944")!
+
         let appGroupsURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.com.rileytestut.AltStore.68A9E944ZN")
-        print("result: \(appGroupsURL  ) \n", #function)
-//        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-//        let documentsDirectory = paths[0]
-//        let docURL = URL(string: documentsDirectory)
+        print("appgroup url: \(appGroupsURL  ) \n", #function)
+        
         if #available(watchOSApplicationExtension 9.0, *) {
             let datapath = appGroupsURL?.appending(path: "FitCam-db.realm")
             
@@ -33,6 +31,8 @@ class WorkoutManager: NSObject, ObservableObject {
             do {
                 try realm = Realm(configuration: config)
                 print("realm fileurl \(realm.configuration.fileURL)")
+//                let workouts = realm.objects(SavedWorkout.self)
+//                print("list of workouts: \n \(workouts)")
             } catch {
                 print("failed to setup configuration. Error: \(error)")
             }
@@ -45,6 +45,23 @@ class WorkoutManager: NSObject, ObservableObject {
     var selectedWorkout: HKWorkoutActivityType?
     
     //MARK:= Watchkit Message Center
+    func sendWorkoutData() {
+        if WCSession.isSupported() {
+            let session = WCSession.default
+
+            do {
+
+                let wkdata2 = try JSONEncoder().encode(savedWorkout)
+                
+                session.sendMessageData(wkdata2) { data in
+                    print("replyhandler from sendMessageData 2 \n data:\(data)")
+                }
+
+            } catch {
+                print("error converting workout data: \(error)")
+            }
+        }
+    }
     func sendWorkoutSelection() {
         if WCSession.isSupported() {
             let session = WCSession.default

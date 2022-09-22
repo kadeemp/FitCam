@@ -18,9 +18,5 @@
 	<array>
 		<string>workout-processing</string>
 	</array>
-	<key>NSHealthShareUsageDescription</key>
-	<string>All your data stays on your phone. Access is required to present workout data while you workout.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Workouts tracked are used to playback workout data over your recorded videos</string>
 </dict>
 </plist>

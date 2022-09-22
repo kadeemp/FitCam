@@ -2,13 +2,12 @@
 //  Datapoint.swift
 //  FitCam
 //
-//  Created by Kadeem Palacios on 8/31/22.
+//  Created by Kadeem Palacios on 9/21/22.
 //
-
 import Foundation
 import RealmSwift
 
-class Datapoint: Object, Encodable {
+class Datapoint: Object, Decodable{
     
     @Persisted  @objc dynamic var type:String
     @Persisted  @objc dynamic var time = Date().formatted(date: .omitted, time: .standard)
@@ -16,8 +15,7 @@ class Datapoint: Object, Encodable {
     @Persisted  @objc dynamic var datapoint:String = ""
     var parentCategory = LinkingObjects(fromType: SavedWorkout.self, property: "datapoints")
     
-    
-    enum CodingKeys:CodingKey {
+    enum CodingKeys: String, CodingKey {
         case type
         case time
         case id
@@ -30,16 +28,14 @@ class Datapoint: Object, Encodable {
         self.time = time
         self.id = id
         self.datapoint = datapoint
-        
     }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(self.type, forKey: .type)
-        try container.encode(self.time, forKey: .time)
-        try container.encode(self.id, forKey: .id)
-        try container.encode(self.datapoint, forKey: .datapoint)
+        self.type = try container.decode(String.self, forKey: .type)
+        self.time = try container.decode(String.self, forKey: .time)
+        self.id = try container.decode(Int.self, forKey: .id )
+        self.datapoint = try container.decode(String.self, forKey: .datapoint)
     }
 //    init(type:String,
 //         time:String,

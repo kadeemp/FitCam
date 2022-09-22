@@ -179,17 +179,17 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
                 print("Watch app not installed", #function)
             }
         }
-        
-      PHPhotoLibrary.requestAuthorization { status in
-        if status == .authorized {
-          PHPhotoLibrary.shared().performChanges {
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
-          } completionHandler: { (success, error) in
-              print("Video saved to photos library")
-
-          }
-        }
-      }
+ //saves to photo gallery
+//      PHPhotoLibrary.requestAuthorization { status in
+//        if status == .authorized {
+//          PHPhotoLibrary.shared().performChanges {
+//            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+//          } completionHandler: { (success, error) in
+//              print("Video saved to photos library")
+//
+//          }
+//        }
+//      }
     }
   }
 }

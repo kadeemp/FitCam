@@ -46,6 +46,8 @@
 		F477AC4128D820FC00E29A1F /* FrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3E28D820FC00E29A1F /* FrameManager.swift */; };
 		F477AC4328D8262A00E29A1F /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC4228D8262A00E29A1F /* CGImageExtension.swift */; };
 		F47BDCB528CAC01A007AA302 /* StartWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */; };
+		F4E5DEA328DBA7CC00DB5565 /* SavedWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E5DEA228DBA7CC00DB5565 /* SavedWorkout.swift */; };
+		F4E5DEA528DBA7EE00DB5565 /* Datapoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E5DEA428DBA7EE00DB5565 /* Datapoint.swift */; };
 		F4EE5EBC28CD62F800C9EF92 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EE5EBB28CD62F800C9EF92 /* ExtensionDelegate.swift */; };
 		F4EE5EBE28CD64FC00C9EF92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EE5EBD28CD64FC00C9EF92 /* AppDelegate.swift */; };
 		F4F2745728D918DC00BF239B /* CameraView_i.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2745628D918DC00BF239B /* CameraView_i.swift */; };
@@ -147,6 +149,8 @@
 		F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
 		F4A70AB828DA8B7A0080E786 /* FitCam WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FitCam WatchKit App.entitlements"; sourceTree = "<group>"; };
 		F4A70AB928DB8F180080E786 /* FitCam-WatchKit-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FitCam-WatchKit-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F4E5DEA228DBA7CC00DB5565 /* SavedWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedWorkout.swift; sourceTree = "<group>"; };
+		F4E5DEA428DBA7EE00DB5565 /* Datapoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datapoint.swift; sourceTree = "<group>"; };
 		F4EE5EBB28CD62F800C9EF92 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		F4EE5EBD28CD64FC00C9EF92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4F2745628D918DC00BF239B /* CameraView_i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView_i.swift; sourceTree = "<group>"; };
@@ -258,9 +262,9 @@
 			children = (
 				F46A52AF28BAEC4D007C5C68 /* FitCamApp.swift */,
 				F4EE5EBB28CD62F800C9EF92 /* ExtensionDelegate.swift */,
+				F47BDCB228CAB536007AA302 /* Controllers */,
 				F47BDCB328CAB549007AA302 /* Models */,
 				F47BDCB128CAB50A007AA302 /* Views */,
-				F47BDCB228CAB536007AA302 /* Controllers */,
 				F46A52DF28BBD827007C5C68 /* FitCam WatchKit Extension.entitlements */,
 				F46A52B928BAEC4E007C5C68 /* Assets.xcassets */,
 				F46A52BE28BAEC4E007C5C68 /* Info.plist */,
@@ -307,6 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				F477AC3928D81A2800E29A1F /* ContentViewModel.swift */,
+				F4E5DEA228DBA7CC00DB5565 /* SavedWorkout.swift */,
+				F4E5DEA428DBA7EE00DB5565 /* Datapoint.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -618,6 +624,7 @@
 				F477AC4028D820FC00E29A1F /* CameraError.swift in Sources */,
 				F477AC3628D819FA00E29A1F /* CameraView.swift in Sources */,
 				F477AC3528D819FA00E29A1F /* ToggleButton.swift in Sources */,
+				F4E5DEA528DBA7EE00DB5565 /* Datapoint.swift in Sources */,
 				F4EE5EBE28CD64FC00C9EF92 /* AppDelegate.swift in Sources */,
 				F477AC3F28D820FC00E29A1F /* CameraManager.swift in Sources */,
 				F46A529728BAEC49007C5C68 /* ContentView.swift in Sources */,
@@ -625,6 +632,7 @@
 				F477AC4128D820FC00E29A1F /* FrameManager.swift in Sources */,
 				F477AC3A28D81A2800E29A1F /* ContentViewModel.swift in Sources */,
 				F4F2745728D918DC00BF239B /* CameraView_i.swift in Sources */,
+				F4E5DEA328DBA7CC00DB5565 /* SavedWorkout.swift in Sources */,
 				F46A529528BAEC49007C5C68 /* FitCamApp.swift in Sources */,
 				F477AC3428D819FA00E29A1F /* ControlView.swift in Sources */,
 				F477AC3728D819FA00E29A1F /* ErrorView.swift in Sources */,
@@ -796,6 +804,8 @@
 				INFOPLIST_FILE = "FitCam WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = FitCam_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "All your data stays on your phone. Access is required to present workout data while you workout.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked are used to playback workout data over your recorded videos";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -830,6 +840,8 @@
 				INFOPLIST_FILE = "FitCam WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = FitCam_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "All your data stays on your phone. Access is required to present workout data while you workout.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked are used to playback workout data over your recorded videos";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

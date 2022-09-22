@@ -38,6 +38,29 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
         
         
     }
+    
+    @available(iOS 16.0, *)
+    func initializeRealm() {
+        var realm:Realm!
+        
+        let appGroupsURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.com.rileytestut.AltStore.68A9E944ZN")
+        print("appgroup url from app: \(appGroupsURL  ) \n", #function)
+        let createdURL = URL(string: "file:///private/var/mobile/Containers/Shared/AppGroup/4DA928C4-1A8F-46E2-B7CB-A3384134E489/FitCam-db.realm")
+        
+            let datapath = appGroupsURL?.appending(path: "FitCam-db.realm")
+            
+            var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
+            do {
+                try realm = Realm(configuration: config)
+                print("realm fileurl:  \(realm.configuration.fileURL) \n createdURL: \(createdURL)")
+                let workouts = realm.objects(SavedWorkout.self)
+                print("list of workouts: \n \(workouts)")
+            } catch {
+                print("failed to setup configuration. Error: \(error)")
+            }
+  
+        
+    }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
@@ -50,12 +73,30 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
     func sessionDidDeactivate(_ session: WCSession) {
         
     }
+
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        print("messageData received \n Data:\(messageData))")
+                do {
+                    let receivedWorkout = try JSONDecoder().decode(SavedWorkout.self, from: messageData)
+                    print("\n Decoded data: \n \(receivedWorkout)")
+                }
+                catch {
+                    print("error decoding message: \(error)")
+                }
+    }
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
                 guard let request = message["request"] as? String else {
         
                     replyHandler([:])
                     return
                 }
+        var update:SavedWorkout?
+        if let update = message["update"] as? SavedWorkout  {
+
+            print("saved workout data \(update)")
+        }
+
+        
         let notify = NotificationCenter.default
         
                 switch request {
@@ -86,6 +127,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
             session.activate()
         }
         if #available(iOS 16.0, *) {
+            initializeRealm()
             initializeVideoDirectory()
         } else {
             // Fallback on earlier versions
