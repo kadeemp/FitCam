@@ -13,6 +13,7 @@
 		F43A882A28C0063F00F107E3 /* SavedWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882928C0063F00F107E3 /* SavedWorkout.swift */; };
 		F43A882D28C00B0000F107E3 /* Datapoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882B28C0091B00F107E3 /* Datapoint.swift */; };
 		F43A882F28C00C5500F107E3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882E28C00C5500F107E3 /* RealmManager.swift */; };
+		F43A92CD28DC461400DB3769 /* AVMoviePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A92CC28DC461400DB3769 /* AVMoviePlayer.swift */; };
 		F46A529528BAEC49007C5C68 /* FitCamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A529428BAEC49007C5C68 /* FitCamApp.swift */; };
 		F46A529728BAEC49007C5C68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A529628BAEC49007C5C68 /* ContentView.swift */; };
 		F46A529928BAEC4B007C5C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46A529828BAEC4B007C5C68 /* Assets.xcassets */; };
@@ -35,15 +36,8 @@
 		F46A52DC28BB7996007C5C68 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A52DB28BB7996007C5C68 /* ActivityRingsView.swift */; };
 		F46A52DE28BBD027007C5C68 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A52DD28BBD027007C5C68 /* WorkoutManager.swift */; };
 		F46A52E228BBD827007C5C68 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46A52E128BBD827007C5C68 /* HealthKit.framework */; };
-		F477AC3328D819FA00E29A1F /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3228D819FA00E29A1F /* FrameView.swift */; };
 		F477AC3428D819FA00E29A1F /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC2F28D819FA00E29A1F /* ControlView.swift */; };
 		F477AC3528D819FA00E29A1F /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC2E28D819FA00E29A1F /* ToggleButton.swift */; };
-		F477AC3628D819FA00E29A1F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3128D819FA00E29A1F /* CameraView.swift */; };
-		F477AC3728D819FA00E29A1F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3028D819FA00E29A1F /* ErrorView.swift */; };
-		F477AC3A28D81A2800E29A1F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3928D81A2800E29A1F /* ContentViewModel.swift */; };
-		F477AC3F28D820FC00E29A1F /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3C28D820FB00E29A1F /* CameraManager.swift */; };
-		F477AC4028D820FC00E29A1F /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3D28D820FB00E29A1F /* CameraError.swift */; };
-		F477AC4128D820FC00E29A1F /* FrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3E28D820FC00E29A1F /* FrameManager.swift */; };
 		F477AC4328D8262A00E29A1F /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC4228D8262A00E29A1F /* CGImageExtension.swift */; };
 		F47BDCB528CAC01A007AA302 /* StartWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */; };
 		F4E5DEA328DBA7CC00DB5565 /* SavedWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E5DEA228DBA7CC00DB5565 /* SavedWorkout.swift */; };
@@ -110,6 +104,7 @@
 		F43A882B28C0091B00F107E3 /* Datapoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datapoint.swift; sourceTree = "<group>"; };
 		F43A882E28C00C5500F107E3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		F43A883028C034E300F107E3 /* FitCam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitCam.entitlements; sourceTree = "<group>"; };
+		F43A92CC28DC461400DB3769 /* AVMoviePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVMoviePlayer.swift; sourceTree = "<group>"; };
 		F46A529128BAEC49007C5C68 /* FitCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46A529428BAEC49007C5C68 /* FitCamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitCamApp.swift; sourceTree = "<group>"; };
 		F46A529628BAEC49007C5C68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,13 +133,6 @@
 		F46A52E128BBD827007C5C68 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		F477AC2E28D819FA00E29A1F /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		F477AC2F28D819FA00E29A1F /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
-		F477AC3028D819FA00E29A1F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		F477AC3128D819FA00E29A1F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		F477AC3228D819FA00E29A1F /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
-		F477AC3928D81A2800E29A1F /* ContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
-		F477AC3C28D820FB00E29A1F /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
-		F477AC3D28D820FB00E29A1F /* CameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
-		F477AC3E28D820FC00E29A1F /* FrameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameManager.swift; sourceTree = "<group>"; };
 		F477AC4228D8262A00E29A1F /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
 		F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
 		F4A70AB828DA8B7A0080E786 /* FitCam WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FitCam WatchKit App.entitlements"; sourceTree = "<group>"; };
@@ -204,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				F46A529328BAEC49007C5C68 /* FitCam */,
+				F46A529828BAEC4B007C5C68 /* Assets.xcassets */,
 				F46A52A328BAEC4C007C5C68 /* FitCam WatchKit App */,
 				F46A52AE28BAEC4D007C5C68 /* FitCam WatchKit Extension */,
 				F46A529228BAEC49007C5C68 /* Products */,
@@ -229,10 +218,8 @@
 				F43A883028C034E300F107E3 /* FitCam.entitlements */,
 				F4EE5EBD28CD64FC00C9EF92 /* AppDelegate.swift */,
 				F477AC4428D8282D00E29A1F /* Extensions */,
-				F477AC3B28D81A7E00E29A1F /* Camera Views */,
 				F477AC3828D81A0F00E29A1F /* VM */,
 				F477AC2D28D819B700E29A1F /* View */,
-				F46A529828BAEC4B007C5C68 /* Assets.xcassets */,
 				F4F2745528D918AB00BF239B /* Camera Views 2 */,
 				F46A529A28BAEC4B007C5C68 /* Preview Content */,
 			);
@@ -296,12 +283,10 @@
 		F477AC2D28D819B700E29A1F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F43A92CC28DC461400DB3769 /* AVMoviePlayer.swift */,
 				F46A529428BAEC49007C5C68 /* FitCamApp.swift */,
 				F46A529628BAEC49007C5C68 /* ContentView.swift */,
-				F477AC3128D819FA00E29A1F /* CameraView.swift */,
 				F477AC2F28D819FA00E29A1F /* ControlView.swift */,
-				F477AC3028D819FA00E29A1F /* ErrorView.swift */,
-				F477AC3228D819FA00E29A1F /* FrameView.swift */,
 				F477AC2E28D819FA00E29A1F /* ToggleButton.swift */,
 			);
 			path = View;
@@ -310,21 +295,10 @@
 		F477AC3828D81A0F00E29A1F /* VM */ = {
 			isa = PBXGroup;
 			children = (
-				F477AC3928D81A2800E29A1F /* ContentViewModel.swift */,
 				F4E5DEA228DBA7CC00DB5565 /* SavedWorkout.swift */,
 				F4E5DEA428DBA7EE00DB5565 /* Datapoint.swift */,
 			);
 			path = VM;
-			sourceTree = "<group>";
-		};
-		F477AC3B28D81A7E00E29A1F /* Camera Views */ = {
-			isa = PBXGroup;
-			children = (
-				F477AC3D28D820FB00E29A1F /* CameraError.swift */,
-				F477AC3C28D820FB00E29A1F /* CameraManager.swift */,
-				F477AC3E28D820FC00E29A1F /* FrameManager.swift */,
-			);
-			path = "Camera Views";
 			sourceTree = "<group>";
 		};
 		F477AC4428D8282D00E29A1F /* Extensions */ = {
@@ -620,22 +594,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F477AC3328D819FA00E29A1F /* FrameView.swift in Sources */,
-				F477AC4028D820FC00E29A1F /* CameraError.swift in Sources */,
-				F477AC3628D819FA00E29A1F /* CameraView.swift in Sources */,
 				F477AC3528D819FA00E29A1F /* ToggleButton.swift in Sources */,
 				F4E5DEA528DBA7EE00DB5565 /* Datapoint.swift in Sources */,
 				F4EE5EBE28CD64FC00C9EF92 /* AppDelegate.swift in Sources */,
-				F477AC3F28D820FC00E29A1F /* CameraManager.swift in Sources */,
 				F46A529728BAEC49007C5C68 /* ContentView.swift in Sources */,
 				F4F2745928D9191B00BF239B /* CameraVC.swift in Sources */,
-				F477AC4128D820FC00E29A1F /* FrameManager.swift in Sources */,
-				F477AC3A28D81A2800E29A1F /* ContentViewModel.swift in Sources */,
 				F4F2745728D918DC00BF239B /* CameraView_i.swift in Sources */,
 				F4E5DEA328DBA7CC00DB5565 /* SavedWorkout.swift in Sources */,
 				F46A529528BAEC49007C5C68 /* FitCamApp.swift in Sources */,
 				F477AC3428D819FA00E29A1F /* ControlView.swift in Sources */,
-				F477AC3728D819FA00E29A1F /* ErrorView.swift in Sources */,
+				F43A92CD28DC461400DB3769 /* AVMoviePlayer.swift in Sources */,
 				F477AC4328D8262A00E29A1F /* CGImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

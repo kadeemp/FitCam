@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AVFoundation
+import AVKit
 
 @available(iOS 16.0, *)
 struct ContentView: View {
@@ -18,6 +20,7 @@ struct ContentView: View {
         VStack {
             Text("Select a workout on the watch app to start the camera")
                 .padding()
+            AVMoviePlayer(playerItem: AVPlayerItem(url: URL(string: "/var/mobile/Containers/Data/Application/E0E33F58-CB94-4A2D-86CE-DBBE0654A364/Documents/WorkoutVideos/C43AAD9E-F227-4B8F-A1D1-68331FE657E1.mp4")!))
 
         }.fullScreenCover(isPresented: $isWorkoutSelected, content: {
             ZStack {

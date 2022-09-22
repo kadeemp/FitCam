@@ -11,10 +11,15 @@ import WatchConnectivity
 import RealmSwift
 import SwiftUI
 
+@available(iOS 16.0, *)
 class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDelegate {
-    //MARK:- FileManager
+    //MARK:- Instance Vars
     
-    @available(iOS 16.0, *)
+    var realm:Realm!
+    static let shared = AppDelegate()
+    //MARK:- Init
+    
+   
     func initializeVideoDirectory() {
         let videoPath = "WorkoutVideos"
         do {
@@ -27,20 +32,15 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
                 print("Directory Created")
             } else {
                 let contents = try FileManager.default.contentsOfDirectory(atPath:documentDirectory.path)
-                print("contents \(contents)")
+                print("contents of doc directory \(contents)")
             }
         }
         catch {
             print(error,"\n")
             print("Error creating documents directory")
         }
-    
     }
-    
-    
-    var realm:Realm!
-    
-    @available(iOS 16.0, *)
+
     func initializeRealm() {
        
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -53,18 +53,15 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
         DispatchQueue.main.async {
             do {
                 try self.realm = Realm(configuration: config)
-                print("realm fileurl:  \(self.realm.configuration.fileURL) ")
-                let workouts = self.realm.objects(SavedWorkout.self)
-                print("list of workouts: \n \(workouts)")
+//                print("realm fileurl:  \(self.realm.configuration.fileURL) ")
+//                print("list of workouts: \n \(workouts)")
             } catch {
                 print("failed to setup configuration. Error: \(error)")
             }
-
         }
-              
-        
     }
     
+    //MARK:- Database Nuke Options
     func nukeRealm() {
         
             DispatchQueue.main.async {
@@ -80,7 +77,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
                 }
             }
     }
-    @available(iOS 16.0, *)
+   
     func nukeDirectory() {
         let videoPath = "WorkoutVideos"
         do {
@@ -104,7 +101,59 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
             print(error,"\n")
         }
     }
+    
+    
+    func deleteWorkout(_ workout:SavedWorkout) {
+        do {
+            DispatchQueue.main.async {
+                try! self.realm.write {
+                    self.realm.delete(workout)
+                    print("workout deleted!")
+                }
+            }
+        }
+    }
+    func saveNewWorkout(_ workout:SavedWorkout) {
+       
+            do {
+                DispatchQueue.main.async {
+                    try! self.realm.write {
+                        self.realm.add(workout)
+                        print("workout saved!")
+                    }
+                }
+            }
+    }
 
+    func getWorkouts(closure:@escaping ((Results<SavedWorkout>?) -> Void )) {
+        getRealm { thisRealm in
+            let workouts = thisRealm.objects(SavedWorkout.self)
+            closure(workouts)
+        }
+                   
+    }
+    
+    func getRealm(closure:@escaping ((Realm) -> Void )) {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(string: documentsDirectory)
+        
+        let datapath = docURL?.appending(path: "FitCam-db.realm")
+            
+           let config = Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
+        DispatchQueue.main.async {
+            do {
+                try self.realm = Realm(configuration: config)
+                //                print("realm fileurl:  \(self.realm.configuration.fileURL) ")
+                closure(self.realm)
+                //                print("list of workouts: \n \(workouts)")
+            } catch {
+                print("failed to setup configuration. Error: \(error)")
+            }
+        }
+    }
+    
+    //MARK:- Watchkit Delegate
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
@@ -116,26 +165,12 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
     func sessionDidDeactivate(_ session: WCSession) {
         
     }
-    func saveNewWorkout(_ workout:SavedWorkout) {
-        if realm != nil {
-            do {
-                DispatchQueue.main.async {
-                    try! self.realm.write {
-                        self.realm.add(workout)
-                        print("workout saved! ")
-                    }
-                }
 
-            }
-            
-             }
-    }
 
     func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
-        print("messageData received \n Data:\(messageData))")
                 do {
                     let receivedWorkout = try JSONDecoder().decode(SavedWorkout.self, from: messageData)
-                    print("\n Decoded data: \n \(receivedWorkout)")
+                    print("Decoded data: \n \(receivedWorkout)")
                     saveNewWorkout(receivedWorkout)
                 }
                 catch {
@@ -186,6 +221,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
         if #available(iOS 16.0, *) {
             initializeRealm()
             initializeVideoDirectory()
+
                    } else {
             // Fallback on earlier versions
         }
