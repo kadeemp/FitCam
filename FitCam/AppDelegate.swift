@@ -34,31 +34,34 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
             print(error,"\n")
             print("Error creating documents directory")
         }
-        
-        
-        
+    
     }
+    
+    
+    var realm:Realm!
     
     @available(iOS 16.0, *)
     func initializeRealm() {
-        var realm:Realm!
+       
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(string: documentsDirectory)
         
-        let appGroupsURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.com.rileytestut.AltStore.68A9E944ZN")
-        print("appgroup url from app: \(appGroupsURL  ) \n", #function)
-        let createdURL = URL(string: "file:///private/var/mobile/Containers/Shared/AppGroup/4DA928C4-1A8F-46E2-B7CB-A3384134E489/FitCam-db.realm")
-        
-            let datapath = appGroupsURL?.appending(path: "FitCam-db.realm")
+        let datapath = docURL?.appending(path: "FitCam-db.realm")
             
             var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
+        DispatchQueue.main.async {
             do {
-                try realm = Realm(configuration: config)
-                print("realm fileurl:  \(realm.configuration.fileURL) \n createdURL: \(createdURL)")
-                let workouts = realm.objects(SavedWorkout.self)
+                try self.realm = Realm(configuration: config)
+                print("realm fileurl:  \(self.realm.configuration.fileURL) ")
+                let workouts = self.realm.objects(SavedWorkout.self)
                 print("list of workouts: \n \(workouts)")
             } catch {
                 print("failed to setup configuration. Error: \(error)")
             }
-  
+
+        }
+              
         
     }
 
@@ -73,12 +76,27 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
     func sessionDidDeactivate(_ session: WCSession) {
         
     }
+    func saveNewWorkout(_ workout:SavedWorkout) {
+        if realm != nil {
+            do {
+                DispatchQueue.main.async {
+                    try! self.realm.write {
+                        self.realm.add(workout)
+                        print("workout saved! ")
+                    }
+                }
+
+            }
+            
+             }
+    }
 
     func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
         print("messageData received \n Data:\(messageData))")
                 do {
                     let receivedWorkout = try JSONDecoder().decode(SavedWorkout.self, from: messageData)
                     print("\n Decoded data: \n \(receivedWorkout)")
+                    saveNewWorkout(receivedWorkout)
                 }
                 catch {
                     print("error decoding message: \(error)")
@@ -95,7 +113,6 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
 
             print("saved workout data \(update)")
         }
-
         
         let notify = NotificationCenter.default
         

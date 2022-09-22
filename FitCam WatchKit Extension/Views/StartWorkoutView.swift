@@ -32,10 +32,13 @@ struct StartWorkoutView: View {
             if output != nil {
                 if workoutManager.savedWorkout != nil {
                     print("saved workout is not nil \n \n")
-                    let appGroupURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.rileytestut.AltStore.68A9E944ZN")
 
+                    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+                    let documentsDirectory = paths[0]
+                    let docURL = URL(string: documentsDirectory)
+                    
                     if #available(watchOSApplicationExtension 9.0, *) {
-                        let datapath = appGroupURL?.appending(path: "FitCam-db.realm")
+                        let datapath = docURL?.appending(path: "FitCam-db.realm")
                         
                         var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
                         do {

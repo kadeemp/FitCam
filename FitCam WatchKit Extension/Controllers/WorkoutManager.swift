@@ -20,12 +20,15 @@ class WorkoutManager: NSObject, ObservableObject {
  
     func setupRealm() {
 //
-
-        let appGroupsURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.com.rileytestut.AltStore.68A9E944ZN")
-        print("appgroup url: \(appGroupsURL  ) \n", #function)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(string: documentsDirectory)
+        //TODO:- Delete all data at this old path
+//        let appGroupsURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.com.rileytestut.AltStore.68A9E944ZN")
+//        print("appgroup url: \(appGroupsURL  ) \n", #function)
         
         if #available(watchOSApplicationExtension 9.0, *) {
-            let datapath = appGroupsURL?.appending(path: "FitCam-db.realm")
+            let datapath = docURL?.appending(path: "FitCam-db.realm")
             
             var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
             do {
