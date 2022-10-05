@@ -16,12 +16,14 @@ struct ContentView: View {
 
     @Binding var isWorkoutSelected:Bool
     var cameraViewVC = CameraViewVC()
+    
     var body: some View {
+        
         VStack {
             Text("Select a workout on the watch app to start the camera")
                 .padding()
-            AVMoviePlayer(playerItem: AVPlayerItem(url: URL(string: "/var/mobile/Containers/Data/Application/E0E33F58-CB94-4A2D-86CE-DBBE0654A364/Documents/WorkoutVideos/C43AAD9E-F227-4B8F-A1D1-68331FE657E1.mp4")!))
-
+            AVMoviePlayer(url: URL(string: "file:///var/mobile/Containers/Data/Application/018F8BD4-4FCC-40AE-BC2B-AD7414C07E56/Documents/WorkoutVideos/C43AAD9E-F227-4B8F-A1D1-68331FE657E1.mp4")!)
+         
         }.fullScreenCover(isPresented: $isWorkoutSelected, content: {
             ZStack {
                 cameraViewVC.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording")), perform: { output  in

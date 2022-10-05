@@ -25,7 +25,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
         do {
             var documentDirectory = try FileManager.default.url(for: .documentDirectory , in: .userDomainMask, appropriateFor: nil, create: false)
             documentDirectory.append(path: videoPath)
-//            print("directory \(documentDirectory.path) \n")
+            print("directory \(documentDirectory) \n path \(documentDirectory.path)")
             let fileExists = FileManager.default.fileExists(atPath: documentDirectory.path)
             if !fileExists {
                 try FileManager.default.createDirectory(atPath: documentDirectory.path, withIntermediateDirectories: true)

@@ -139,7 +139,7 @@ class CameraViewController: UIViewController {
           videoDirectory = videoDirectory.appending(path: videoPath)
    
           try FileManager.default.createDirectory(atPath: videoDirectory.path, withIntermediateDirectories: true, attributes: nil)
-          videoDirectory = videoDirectory.appending(path: "\(uuid).mp4")
+          videoDirectory = videoDirectory.appending(path: "\(uuid).mov")
           print("videoDirectory: = \(videoDirectory)")
           movieOutput.startRecording(to: videoDirectory, recordingDelegate: self)
       }

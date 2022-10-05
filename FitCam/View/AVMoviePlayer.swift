@@ -34,19 +34,37 @@ import Foundation
 import SwiftUI
 import AVKit
 
+@available(iOS 16.0, *)
 struct AVMoviePlayer: UIViewControllerRepresentable {
 
   typealias UIViewControllerType = AVPlayerViewController
 
   var player: AVPlayer
 
-
   init(url: URL) {
-    player = AVPlayer(url: url)
+      let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+      var url2 = documentsDirectory?.appending(path: "WorkoutVideos")
+      url2 = url.appending(path: "C43AAD9E-F227-4B8F-A1D1-68331FE657E1.mp4")
+      player = AVPlayer(url: url2!)
+      print(player.status)
   }
 
-  init(playerItem: AVPlayerItem) {
+    init(playerItem: AVPlayerItem) {
     player = AVPlayer(playerItem: playerItem)
+        player.play()
+        print(player.status)
+        
+        
+        if let error = self.player.error {
+              print("error is \(error) - item")
+          }
+          
+      let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+      var url = documentsDirectory?.appending(path: "WorkoutVideos")
+        url = url?.appending(path: "C43AAD9E-F227-4B8F-A1D1-68331FE657E1.mp4")
+        print("path being checked \(url?.path())")
+        print (FileManager.default.fileExists(atPath: (url?.path())!))
+
   }
 
   init(urls: [URL]) {
