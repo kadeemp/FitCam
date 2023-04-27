@@ -43,10 +43,13 @@ struct AVMoviePlayer: UIViewControllerRepresentable {
 
   init(url: URL) {
       let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-      var url2 = documentsDirectory?.appending(path: "WorkoutVideos")
-      url2 = url.appending(path: "C43AAD9E-F227-4B8F-A1D1-68331FE657E1.mp4")
-      player = AVPlayer(url: url2!)
-      print(player.status)
+
+      player = AVPlayer(url: url)
+      print(url)
+      
+      print("\n", player.error, player.description)
+      
+//      print(player.status.rawValue)
   }
 
     init(playerItem: AVPlayerItem) {
