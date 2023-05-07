@@ -146,11 +146,13 @@ class WorkoutManager: NSObject, ObservableObject {
         switch selectedWorkout {
         case .running:
             //heart rate
+            datapoint = Datapoint()
             datapoint.id = count
             datapoint.time = time
             datapoint.datapoint = String(heartRate)
             datapoint.type = "Heart Rate"
             try! realm.write {
+                print("DataPoint Added: \(datapoint) \n")
                 savedWorkout.dataPoints.append(datapoint)
             }
             
@@ -162,6 +164,7 @@ class WorkoutManager: NSObject, ObservableObject {
             datapoint.datapoint = String(averageHeartRate)
             datapoint.type = "Average Heart Rate Heart Rate"
             try! realm.write {
+                print("DataPoint Added: \(datapoint) \n")
                 savedWorkout.dataPoints.append(datapoint)
             }
             
@@ -181,6 +184,7 @@ class WorkoutManager: NSObject, ObservableObject {
             datapoint.datapoint = String(distance)
             datapoint.type = "Total Distance"
             try! realm.write {
+                print("DataPoint Added: \(datapoint) \n")
                 savedWorkout.dataPoints.append(datapoint)
             }
             
@@ -232,7 +236,7 @@ class WorkoutManager: NSObject, ObservableObject {
 //        } catch {
 //            print("error saving updated saved workout from sample data")
 //        }
-                    writeWorkoutToDatabase()
+    writeWorkoutToDatabase()
 
         count += 1
 //        print(savedWorkout)

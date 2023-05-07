@@ -14,7 +14,7 @@ struct ContentView: View {
 
     init(isWorkoutSelected: Binding<Bool>) {
         _isWorkoutSelected = isWorkoutSelected
-        _cameraVC = State(initialValue: nil)
+        _cameraVC = State(initialValue: CameraViewVC(videos: $videos))
     }
 
     var body: some View {
@@ -33,7 +33,7 @@ struct ContentView: View {
                 cameraVC = CameraViewVC(videos: $videos)
             }
         }
-        .sheet(isPresented: $isWorkoutSelected, content: {
+        .fullScreenCover(isPresented: $isWorkoutSelected, content: {
             ZStack {
                 cameraVC
                 cameraVC?.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording")), perform: { output in
