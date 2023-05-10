@@ -7,9 +7,9 @@
 
 import WatchKit
 import WatchConnectivity
-import RealmSwift
+//import RealmSwift
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
+class ExtensionDelegate: NSObject, WKApplicationDelegate, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
             print("Activation didnt complete with error \(error)")

@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33296D4E09ED246D8470FF83 /* Pods_FitCam_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90022B6C732FC6E2D2519BB4 /* Pods_FitCam_WatchKit_App.framework */; };
-		5C1B53D976C85A7B3DC7F995 /* Pods_FitCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9477D5B9CCB54A81F013A64 /* Pods_FitCam.framework */; };
-		65D2CFFF6D820A6A397B8AEB /* Pods_FitCam_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE70484E80FBED6A9975A50 /* Pods_FitCam_WatchKit_Extension.framework */; };
-		F43A882A28C0063F00F107E3 /* SavedWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882928C0063F00F107E3 /* SavedWorkout.swift */; };
-		F43A882D28C00B0000F107E3 /* Datapoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882B28C0091B00F107E3 /* Datapoint.swift */; };
+		3931BE654FA4E68D31D9900F /* Pods_FitCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1D3E10ECFCC8F4F459FCF8 /* Pods_FitCam.framework */; };
+		3EDCF9BF29D4D1AB4850C976 /* Pods_FitCam_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079E08052E1654460BF08093 /* Pods_FitCam_WatchKit_App.framework */; };
+		AD527553D25DDB8F1722B739 /* Pods_FitCam_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFED7070ED751C6D5639369 /* Pods_FitCam_WatchKit_Extension.framework */; };
+		F422772D2A0C41E30028124B /* DataCenter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F422772B2A0C41E30028124B /* DataCenter.xcdatamodeld */; };
+		F43A882A28C0063F00F107E3 /* SavedWorkout2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882928C0063F00F107E3 /* SavedWorkout2.swift */; };
+		F43A882D28C00B0000F107E3 /* Datapoint2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882B28C0091B00F107E3 /* Datapoint2.swift */; };
 		F43A882F28C00C5500F107E3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A882E28C00C5500F107E3 /* RealmManager.swift */; };
 		F46A529528BAEC49007C5C68 /* FitCamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A529428BAEC49007C5C68 /* FitCamApp.swift */; };
 		F46A529728BAEC49007C5C68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A529628BAEC49007C5C68 /* ContentView.swift */; };
@@ -19,7 +20,6 @@
 		F46A529C28BAEC4B007C5C68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46A529B28BAEC4B007C5C68 /* Preview Assets.xcassets */; };
 		F46A52A028BAEC4C007C5C68 /* FitCam WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F46A529F28BAEC4C007C5C68 /* FitCam WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F46A52A528BAEC4D007C5C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46A52A428BAEC4D007C5C68 /* Assets.xcassets */; };
-		F46A52AB28BAEC4D007C5C68 /* FitCam WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F46A52AA28BAEC4D007C5C68 /* FitCam WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F46A52B028BAEC4D007C5C68 /* FitCamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A52AF28BAEC4D007C5C68 /* FitCamApp.swift */; };
 		F46A52B228BAEC4D007C5C68 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A52B128BAEC4D007C5C68 /* StartView.swift */; };
 		F46A52B428BAEC4D007C5C68 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A52B328BAEC4D007C5C68 /* NotificationController.swift */; };
@@ -65,27 +65,9 @@
 			remoteGlobalIDString = F46A529E28BAEC4C007C5C68;
 			remoteInfo = "FitCam WatchKit App";
 		};
-		F46A52AC28BAEC4D007C5C68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F46A528928BAEC49007C5C68 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F46A52A928BAEC4D007C5C68;
-			remoteInfo = "FitCam WatchKit Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F46A52C528BAEC4E007C5C68 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				F46A52AB28BAEC4D007C5C68 /* FitCam WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F46A52C928BAEC4E007C5C68 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,17 +82,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		06F78616CD44CA376566E3A4 /* Pods-FitCam WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit Extension/Pods-FitCam WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
-		09576FC6DA97FC5BB5E91527 /* Pods-FitCam WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit Extension/Pods-FitCam WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		4B5E82A7A9EA55BA24F95848 /* Pods-FitCam WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit App/Pods-FitCam WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
-		65144510E91F436BE961A0D8 /* Pods-FitCam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam.debug.xcconfig"; path = "Target Support Files/Pods-FitCam/Pods-FitCam.debug.xcconfig"; sourceTree = "<group>"; };
-		90022B6C732FC6E2D2519BB4 /* Pods_FitCam_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitCam_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9DE70484E80FBED6A9975A50 /* Pods_FitCam_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitCam_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9477D5B9CCB54A81F013A64 /* Pods_FitCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE0D3F988690F43A519D318A /* Pods-FitCam WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit App/Pods-FitCam WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
-		E680E7D103E96DF4E4528CFA /* Pods-FitCam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam.release.xcconfig"; path = "Target Support Files/Pods-FitCam/Pods-FitCam.release.xcconfig"; sourceTree = "<group>"; };
-		F43A882928C0063F00F107E3 /* SavedWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedWorkout.swift; sourceTree = "<group>"; };
-		F43A882B28C0091B00F107E3 /* Datapoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datapoint.swift; sourceTree = "<group>"; };
+		0052AB56D093102E1FF631A5 /* Pods-FitCam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam.debug.xcconfig"; path = "Target Support Files/Pods-FitCam/Pods-FitCam.debug.xcconfig"; sourceTree = "<group>"; };
+		079E08052E1654460BF08093 /* Pods_FitCam_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitCam_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53DE0EAEBB539C4D94634388 /* Pods-FitCam WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit App/Pods-FitCam WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
+		5463DF98850DF9737697CA8C /* Pods-FitCam WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit Extension/Pods-FitCam WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
+		7700D3408CB9C88DA3C98A71 /* Pods-FitCam WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit App/Pods-FitCam WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
+		793EDD40350D1DDE64CC6CDD /* Pods-FitCam WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-FitCam WatchKit Extension/Pods-FitCam WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		7EFED7070ED751C6D5639369 /* Pods_FitCam_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitCam_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E49B6A703200E0A37421587 /* Pods-FitCam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitCam.release.xcconfig"; path = "Target Support Files/Pods-FitCam/Pods-FitCam.release.xcconfig"; sourceTree = "<group>"; };
+		BC1D3E10ECFCC8F4F459FCF8 /* Pods_FitCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F422772C2A0C41E30028124B /* DataCenter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCenter.xcdatamodel; sourceTree = "<group>"; };
+		F43A882928C0063F00F107E3 /* SavedWorkout2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedWorkout2.swift; sourceTree = "<group>"; };
+		F43A882B28C0091B00F107E3 /* Datapoint2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datapoint2.swift; sourceTree = "<group>"; };
 		F43A882E28C00C5500F107E3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		F43A883028C034E300F107E3 /* FitCam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitCam.entitlements; sourceTree = "<group>"; };
 		F46A529128BAEC49007C5C68 /* FitCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +103,6 @@
 		F46A529B28BAEC4B007C5C68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F46A529F28BAEC4C007C5C68 /* FitCam WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FitCam WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46A52A428BAEC4D007C5C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F46A52AA28BAEC4D007C5C68 /* FitCam WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FitCam WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46A52AF28BAEC4D007C5C68 /* FitCamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitCamApp.swift; sourceTree = "<group>"; };
 		F46A52B128BAEC4D007C5C68 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		F46A52B328BAEC4D007C5C68 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -169,7 +151,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33296D4E09ED246D8470FF83 /* Pods_FitCam_WatchKit_App.framework in Frameworks */,
+				3EDCF9BF29D4D1AB4850C976 /* Pods_FitCam_WatchKit_App.framework in Frameworks */,
+				AD527553D25DDB8F1722B739 /* Pods_FitCam_WatchKit_Extension.framework in Frameworks */,
+				F46A52E228BBD827007C5C68 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,16 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C1B53D976C85A7B3DC7F995 /* Pods_FitCam.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F46A52A728BAEC4D007C5C68 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F46A52E228BBD827007C5C68 /* HealthKit.framework in Frameworks */,
-				65D2CFFF6D820A6A397B8AEB /* Pods_FitCam_WatchKit_Extension.framework in Frameworks */,
+				3931BE654FA4E68D31D9900F /* Pods_FitCam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,14 +171,22 @@
 		6D508335B653489AB366D3BD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				65144510E91F436BE961A0D8 /* Pods-FitCam.debug.xcconfig */,
-				E680E7D103E96DF4E4528CFA /* Pods-FitCam.release.xcconfig */,
-				DE0D3F988690F43A519D318A /* Pods-FitCam WatchKit App.debug.xcconfig */,
-				4B5E82A7A9EA55BA24F95848 /* Pods-FitCam WatchKit App.release.xcconfig */,
-				09576FC6DA97FC5BB5E91527 /* Pods-FitCam WatchKit Extension.debug.xcconfig */,
-				06F78616CD44CA376566E3A4 /* Pods-FitCam WatchKit Extension.release.xcconfig */,
+				0052AB56D093102E1FF631A5 /* Pods-FitCam.debug.xcconfig */,
+				8E49B6A703200E0A37421587 /* Pods-FitCam.release.xcconfig */,
+				53DE0EAEBB539C4D94634388 /* Pods-FitCam WatchKit App.debug.xcconfig */,
+				7700D3408CB9C88DA3C98A71 /* Pods-FitCam WatchKit App.release.xcconfig */,
+				793EDD40350D1DDE64CC6CDD /* Pods-FitCam WatchKit Extension.debug.xcconfig */,
+				5463DF98850DF9737697CA8C /* Pods-FitCam WatchKit Extension.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F422772A2A0C41600028124B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F422772B2A0C41E30028124B /* DataCenter.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		F46A528828BAEC49007C5C68 = {
@@ -223,7 +206,6 @@
 			children = (
 				F46A529128BAEC49007C5C68 /* FitCam.app */,
 				F46A529F28BAEC4C007C5C68 /* FitCam WatchKit App.app */,
-				F46A52AA28BAEC4D007C5C68 /* FitCam WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,8 +251,9 @@
 				F46A52AF28BAEC4D007C5C68 /* FitCamApp.swift */,
 				F4EE5EBB28CD62F800C9EF92 /* ExtensionDelegate.swift */,
 				F47BDCB228CAB536007AA302 /* Controllers */,
-				F47BDCB328CAB549007AA302 /* Models */,
 				F47BDCB128CAB50A007AA302 /* Views */,
+				F47BDCB328CAB549007AA302 /* Models */,
+				F422772A2A0C41600028124B /* CoreData */,
 				F46A52DF28BBD827007C5C68 /* FitCam WatchKit Extension.entitlements */,
 				F46A52B928BAEC4E007C5C68 /* Assets.xcassets */,
 				F46A52BE28BAEC4E007C5C68 /* Info.plist */,
@@ -292,9 +275,9 @@
 			isa = PBXGroup;
 			children = (
 				F46A52E128BBD827007C5C68 /* HealthKit.framework */,
-				B9477D5B9CCB54A81F013A64 /* Pods_FitCam.framework */,
-				90022B6C732FC6E2D2519BB4 /* Pods_FitCam_WatchKit_App.framework */,
-				9DE70484E80FBED6A9975A50 /* Pods_FitCam_WatchKit_Extension.framework */,
+				BC1D3E10ECFCC8F4F459FCF8 /* Pods_FitCam.framework */,
+				079E08052E1654460BF08093 /* Pods_FitCam_WatchKit_App.framework */,
+				7EFED7070ED751C6D5639369 /* Pods_FitCam_WatchKit_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -373,8 +356,8 @@
 		F47BDCB328CAB549007AA302 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F43A882B28C0091B00F107E3 /* Datapoint.swift */,
-				F43A882928C0063F00F107E3 /* SavedWorkout.swift */,
+				F43A882B28C0091B00F107E3 /* Datapoint2.swift */,
+				F43A882928C0063F00F107E3 /* SavedWorkout2.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -396,12 +379,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F46A52CA28BAEC4E007C5C68 /* Build configuration list for PBXNativeTarget "FitCam" */;
 			buildPhases = (
-				8DF7799419B3A90D66F6ABEF /* [CP] Check Pods Manifest.lock */,
+				B4BBCE23BD997B7EABAB4521 /* [CP] Check Pods Manifest.lock */,
 				F46A528D28BAEC49007C5C68 /* Sources */,
 				F46A528E28BAEC49007C5C68 /* Frameworks */,
 				F46A528F28BAEC49007C5C68 /* Resources */,
 				F46A52C928BAEC4E007C5C68 /* Embed Watch Content */,
-				171AEEE2581F2FED8249056B /* [CP] Embed Pods Frameworks */,
+				D68DE781DD73C1DB19005961 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -417,39 +400,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F46A52C628BAEC4E007C5C68 /* Build configuration list for PBXNativeTarget "FitCam WatchKit App" */;
 			buildPhases = (
-				3DFBD9AFEF7CEE18BE8287AA /* [CP] Check Pods Manifest.lock */,
+				5B732AA6A062F9E6508A37DE /* [CP] Check Pods Manifest.lock */,
 				F46A529D28BAEC4C007C5C68 /* Resources */,
-				F46A52C528BAEC4E007C5C68 /* Embed App Extensions */,
 				00DC7F73374C0790DF166FEE /* Frameworks */,
+				DB208480644059EF096659C0 /* [CP] Check Pods Manifest.lock */,
+				F46A52A628BAEC4D007C5C68 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F46A52AD28BAEC4D007C5C68 /* PBXTargetDependency */,
 			);
 			name = "FitCam WatchKit App";
 			productName = "FitCam WatchKit App";
 			productReference = F46A529F28BAEC4C007C5C68 /* FitCam WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		F46A52A928BAEC4D007C5C68 /* FitCam WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F46A52C228BAEC4E007C5C68 /* Build configuration list for PBXNativeTarget "FitCam WatchKit Extension" */;
-			buildPhases = (
-				84CB0AC3B1CBB9D3E0DD95CA /* [CP] Check Pods Manifest.lock */,
-				F46A52A628BAEC4D007C5C68 /* Sources */,
-				F46A52A728BAEC4D007C5C68 /* Frameworks */,
-				F46A52A828BAEC4D007C5C68 /* Resources */,
-				2C612C61C3716FF544BBBFB0 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "FitCam WatchKit Extension";
-			productName = "FitCam WatchKit Extension";
-			productReference = F46A52AA28BAEC4D007C5C68 /* FitCam WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -459,15 +423,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					F46A529028BAEC49007C5C68 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					F46A529E28BAEC4C007C5C68 = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
-					F46A52A928BAEC4D007C5C68 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
@@ -487,7 +448,6 @@
 			targets = (
 				F46A529028BAEC49007C5C68 /* FitCam */,
 				F46A529E28BAEC4C007C5C68 /* FitCam WatchKit App */,
-				F46A52A928BAEC4D007C5C68 /* FitCam WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -506,57 +466,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F46A52A528BAEC4D007C5C68 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F46A52A828BAEC4D007C5C68 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 				F46A52BD28BAEC4E007C5C68 /* Preview Assets.xcassets in Resources */,
 				F46A52BA28BAEC4E007C5C68 /* Assets.xcassets in Resources */,
+				F46A52A528BAEC4D007C5C68 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		171AEEE2581F2FED8249056B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitCam/Pods-FitCam-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitCam/Pods-FitCam-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitCam/Pods-FitCam-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2C612C61C3716FF544BBBFB0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitCam WatchKit Extension/Pods-FitCam WatchKit Extension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitCam WatchKit Extension/Pods-FitCam WatchKit Extension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitCam WatchKit Extension/Pods-FitCam WatchKit Extension-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3DFBD9AFEF7CEE18BE8287AA /* [CP] Check Pods Manifest.lock */ = {
+		5B732AA6A062F9E6508A37DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -578,29 +497,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		84CB0AC3B1CBB9D3E0DD95CA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FitCam WatchKit Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8DF7799419B3A90D66F6ABEF /* [CP] Check Pods Manifest.lock */ = {
+		B4BBCE23BD997B7EABAB4521 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -616,6 +513,45 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-FitCam-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D68DE781DD73C1DB19005961 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FitCam/Pods-FitCam-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FitCam/Pods-FitCam-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitCam/Pods-FitCam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB208480644059EF096659C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FitCam WatchKit Extension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -656,16 +592,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F43A882A28C0063F00F107E3 /* SavedWorkout.swift in Sources */,
+				F43A882A28C0063F00F107E3 /* SavedWorkout2.swift in Sources */,
 				F46A52B428BAEC4D007C5C68 /* NotificationController.swift in Sources */,
 				F43A882F28C00C5500F107E3 /* RealmManager.swift in Sources */,
-				F43A882D28C00B0000F107E3 /* Datapoint.swift in Sources */,
+				F43A882D28C00B0000F107E3 /* Datapoint2.swift in Sources */,
 				F46A52D228BAFC6F007C5C68 /* MetricsView.swift in Sources */,
 				F47BDCB528CAC01A007AA302 /* StartWorkoutView.swift in Sources */,
 				F4EE5EBC28CD62F800C9EF92 /* ExtensionDelegate.swift in Sources */,
 				F46A52B228BAEC4D007C5C68 /* StartView.swift in Sources */,
 				F46A52B828BAEC4D007C5C68 /* ComplicationController.swift in Sources */,
 				F46A52B028BAEC4D007C5C68 /* FitCamApp.swift in Sources */,
+				F422772D2A0C41E30028124B /* DataCenter.xcdatamodeld in Sources */,
 				F46A52B628BAEC4D007C5C68 /* NotificationView.swift in Sources */,
 				F46A52D628BB0F35007C5C68 /* ElapsedTimeView.swift in Sources */,
 				F46A52D828BB1195007C5C68 /* ControlsView.swift in Sources */,
@@ -683,11 +620,6 @@
 			isa = PBXTargetDependency;
 			target = F46A529E28BAEC4C007C5C68 /* FitCam WatchKit App */;
 			targetProxy = F46A52A128BAEC4C007C5C68 /* PBXContainerItemProxy */;
-		};
-		F46A52AD28BAEC4D007C5C68 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F46A52A928BAEC4D007C5C68 /* FitCam WatchKit Extension */;
-			targetProxy = F46A52AC28BAEC4D007C5C68 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -725,6 +657,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -783,6 +716,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -801,96 +735,32 @@
 			};
 			name = Release;
 		};
-		F46A52C328BAEC4E007C5C68 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09576FC6DA97FC5BB5E91527 /* Pods-FitCam WatchKit Extension.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit Extension/FitCam WatchKit Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FitCam WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 68A9E944ZN;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "FitCam WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = FitCam_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "All your data stays on your phone. Access is required to present workout data while you workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked are used to playback workout data over your recorded videos";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KAP.FitCam.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
-			};
-			name = Debug;
-		};
-		F46A52C428BAEC4E007C5C68 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06F78616CD44CA376566E3A4 /* Pods-FitCam WatchKit Extension.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit Extension/FitCam WatchKit Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FitCam WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 68A9E944ZN;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "FitCam WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = FitCam_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "All your data stays on your phone. Access is required to present workout data while you workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked are used to playback workout data over your recorded videos";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KAP.FitCam.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
-			};
-			name = Release;
-		};
 		F46A52C728BAEC4E007C5C68 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE0D3F988690F43A519D318A /* Pods-FitCam WatchKit App.debug.xcconfig */;
+			baseConfigurationReference = 53DE0EAEBB539C4D94634388 /* Pods-FitCam WatchKit App.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit App/FitCam WatchKit App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit Extension/FitCam WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68A9E944ZN;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = FitCam_WatchKit_Extension;
 				INFOPLIST_FILE = "FitCam-WatchKit-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit App";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "All your data stays on your phone. Access is required to present workout data while you workout.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked are used to playback workout data over your recorded videos";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = KAP.FitCam;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = KAP.FitCam.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -905,21 +775,30 @@
 		};
 		F46A52C828BAEC4E007C5C68 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B5E82A7A9EA55BA24F95848 /* Pods-FitCam WatchKit App.release.xcconfig */;
+			baseConfigurationReference = 7700D3408CB9C88DA3C98A71 /* Pods-FitCam WatchKit App.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit App/FitCam WatchKit App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "FitCam WatchKit Extension/FitCam WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68A9E944ZN;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = FitCam_WatchKit_Extension;
 				INFOPLIST_FILE = "FitCam-WatchKit-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FitCam WatchKit App";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "All your data stays on your phone. Access is required to present workout data while you workout.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked are used to playback workout data over your recorded videos";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = KAP.FitCam;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = KAP.FitCam.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -935,7 +814,7 @@
 		};
 		F46A52CB28BAEC4E007C5C68 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65144510E91F436BE961A0D8 /* Pods-FitCam.debug.xcconfig */;
+			baseConfigurationReference = 0052AB56D093102E1FF631A5 /* Pods-FitCam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -975,7 +854,7 @@
 		};
 		F46A52CC28BAEC4E007C5C68 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E680E7D103E96DF4E4528CFA /* Pods-FitCam.release.xcconfig */;
+			baseConfigurationReference = 8E49B6A703200E0A37421587 /* Pods-FitCam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1026,15 +905,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F46A52C228BAEC4E007C5C68 /* Build configuration list for PBXNativeTarget "FitCam WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F46A52C328BAEC4E007C5C68 /* Debug */,
-				F46A52C428BAEC4E007C5C68 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		F46A52C628BAEC4E007C5C68 /* Build configuration list for PBXNativeTarget "FitCam WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1054,6 +924,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F422772B2A0C41E30028124B /* DataCenter.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F422772C2A0C41E30028124B /* DataCenter.xcdatamodel */,
+			);
+			currentVersion = F422772C2A0C41E30028124B /* DataCenter.xcdatamodel */;
+			path = DataCenter.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F46A528928BAEC49007C5C68 /* Project object */;
 }

@@ -23,5 +23,4 @@ target 'FitCam WatchKit Extension' do
   use_frameworks!
 
   # Pods for FitCam WatchKit Extension
-  pod 'RealmSwift', '~>10'
 end

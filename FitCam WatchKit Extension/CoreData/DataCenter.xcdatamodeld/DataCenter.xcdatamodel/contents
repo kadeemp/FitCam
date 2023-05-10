@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Datapoint" representedClassName="Datapoint" parentEntity="SavedWorkout" syncable="YES" codeGenerationType="class">
+        <attribute name="datapoint" optional="YES" attributeType="String"/>
+        <attribute name="iD" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="child" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SavedWorkout" inverseName="fromSavedWorkout" inverseEntity="SavedWorkout"/>
+    </entity>
+    <entity name="SavedWorkout" representedClassName="SavedWorkout" syncable="YES" codeGenerationType="class">
+        <attribute name="datapoints" optional="YES" attributeType="Transformable"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="videoURL" optional="YES" attributeType="String"/>
+        <attribute name="workoutType" optional="YES" attributeType="String"/>
+        <relationship name="fromSavedWorkout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Datapoint" inverseName="child" inverseEntity="Datapoint"/>
+    </entity>
+</model>

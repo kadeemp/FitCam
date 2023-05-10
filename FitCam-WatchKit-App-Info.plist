@@ -11,5 +11,11 @@
 	<string></string>
 	<key>CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array/>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
 </dict>
 </plist>

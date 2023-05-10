@@ -28,7 +28,6 @@ struct StartView: View {
         
        
         .onAppear {
-            workoutManager.requestAuthorization()
         }
     }
 }

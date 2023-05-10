@@ -8,15 +8,15 @@
 import Foundation
 import HealthKit
 import SwiftUI
-import RealmSwift
+//import RealmSwift
 import WatchConnectivity
 
 
 class WorkoutManager: NSObject, ObservableObject {
     
     var timer = Timer()
-    var realm:Realm!
-    var savedWorkout:SavedWorkout!
+//    var realm:Realm!
+    var savedWorkout:SavedWorkout2!
  
     func setupRealm() {
 //
@@ -27,21 +27,21 @@ class WorkoutManager: NSObject, ObservableObject {
 //        let appGroupsURL:URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.com.rileytestut.AltStore.68A9E944ZN")
 //        print("appgroup url: \(appGroupsURL  ) \n", #function)
         
-        if #available(watchOSApplicationExtension 9.0, *) {
-            let datapath = docURL?.appending(path: "FitCam-db.realm")
-            
-            var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
-            do {
-                try realm = Realm(configuration: config)
-                print("realm fileurl \(realm.configuration.fileURL)")
-//                let workouts = realm.objects(SavedWorkout.self)
-//                print("list of workouts: \n \(workouts)")
-            } catch {
-                print("failed to setup configuration. Error: \(error)")
-            }
-        } else {
-            // Fallback on earlier versions
-        }
+//        if #available(watchOSApplicationExtension 9.0, *) {
+//            let datapath = docURL?.appending(path: "FitCam-db.realm")
+//
+//            var config =  Realm.Configuration(fileURL: datapath ,schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
+//            do {
+//                try realm = Realm(configuration: config)
+//                print("realm fileurl \(realm.configuration.fileURL)")
+////                let workouts = realm.objects(SavedWorkout.self)
+////                print("list of workouts: \n \(workouts)")
+//            } catch {
+//                print("failed to setup configuration. Error: \(error)")
+//            }
+//        } else {
+//            // Fallback on earlier versions
+//        }
         
 
     }
@@ -96,19 +96,19 @@ class WorkoutManager: NSObject, ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
             self.sampleWorkoutData()
         })
-        guard let realm = realm else {
-            print("REALM NOT CREATED FOR SAMPLER")
-            return}
+//        guard let realm = realm else {
+//            print("REALM NOT CREATED FOR SAMPLER")
+//            return}
 
-        savedWorkout = SavedWorkout()
+        savedWorkout = SavedWorkout2(workoutType: "", date: "", dataPoints: [], videoURL: "")
         savedWorkout.date = Date().formatted(date: .abbreviated, time: .standard)
         savedWorkout.workoutType = selectedWorkout?.name ?? ""
         
         do {
-            try realm.write({
-                realm.add(savedWorkout)
-            })
-        }
+//            try realm.write({
+//                realm.add(savedWorkout)
+            }
+        
         catch {
          print("error saving workout from sampler start")
         }
@@ -119,14 +119,14 @@ class WorkoutManager: NSObject, ObservableObject {
     }
     
     func writeWorkoutToDatabase() {
-        guard let realm = realm else {
-            print("REALM NOT CREATED, ",#function)
-            return}
+//        guard let realm = realm else {
+//            print("REALM NOT CREATED, ",#function)
+//            return}
 
         do {
-            try realm.write {
-                realm.add(savedWorkout)
-            }
+//            try realm.write {
+////                realm.add(savedWorkout)
+//            }
         }
         catch {
             print("")
@@ -136,38 +136,29 @@ class WorkoutManager: NSObject, ObservableObject {
     var samplerCount = 0
     
     func sampleWorkoutData() {
-        guard let realm = realm else {
-            print("REALM NOT CREATED ",#function)
-            return}
+//        guard let realm = realm else {
+//            print("REALM NOT CREATED ",#function)
+//            return}
         var date = Date().formatted(date: .abbreviated, time: .omitted)
         var time = Date().formatted(date: .omitted, time: .standard)
-        var datapoint = Datapoint()
+        var datapoint = Datapoint2(type: "", time: "", id: .zero, datapoint: "")
         
         switch selectedWorkout {
         case .running:
             //heart rate
-            datapoint = Datapoint()
-            datapoint.id = count
-            datapoint.time = time
-            datapoint.datapoint = String(heartRate)
-            datapoint.type = "Heart Rate"
-            try! realm.write {
+            datapoint = Datapoint2(type: "Heart Rate", time: time, id: count, datapoint: String(heartRate))
+
                 print("DataPoint Added: \(datapoint) \n")
                 savedWorkout.dataPoints.append(datapoint)
-            }
+            
             
 //            writeWorkoutToDatabase()
             //avg heart rate
-            datapoint = Datapoint()
-            datapoint.id = count
-            datapoint.time = time
-            datapoint.datapoint = String(averageHeartRate)
-            datapoint.type = "Average Heart Rate Heart Rate"
-            try! realm.write {
+            datapoint = Datapoint2(type: "Average Heart Rate Heart Rate", time: time, id: count, datapoint: String(averageHeartRate))
+
                 print("DataPoint Added: \(datapoint) \n")
                 savedWorkout.dataPoints.append(datapoint)
-            }
-            
+                        
 //            writeWorkoutToDatabase()
 //            //pace
 //            datapoint = Datapoint()
@@ -178,15 +169,11 @@ class WorkoutManager: NSObject, ObservableObject {
 //
 //            savedWorkout.dataPoints.append(datapoint)
             //distance
-            datapoint = Datapoint()
-            datapoint.id = count
-            datapoint.time = time
-            datapoint.datapoint = String(distance)
-            datapoint.type = "Total Distance"
-            try! realm.write {
+            datapoint = Datapoint2(type: "Total Distance", time: time, id: count, datapoint: String(distance))
+    
                 print("DataPoint Added: \(datapoint) \n")
                 savedWorkout.dataPoints.append(datapoint)
-            }
+            
             
 //            writeWorkoutToDatabase()
             //steps
@@ -257,7 +244,9 @@ class WorkoutManager: NSObject, ObservableObject {
     var builder: HKLiveWorkoutBuilder?
     
    public func startWorkout(workoutType:HKWorkoutActivityType) {
-       startSampler()
+       
+           startSampler()
+
        let configuration = HKWorkoutConfiguration()
         configuration.activityType = workoutType
         configuration.locationType = .outdoor
@@ -278,34 +267,20 @@ class WorkoutManager: NSObject, ObservableObject {
         let startDate = Date()
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate, completion: { success, error in
+            switch success {
+            case false:
+                fatalError("error beginning collection of builder: \(error)")
+            case true:
+                print("success creating builder")
             
-            
+            }
         }
         )
     }
     
-    func requestAuthorization() {
-        
-        let typesToShare: Set = [
-            HKQuantityType.workoutType()
-        ]
-        
-        let typesToRead:Set = [
-            HKQuantityType.quantityType(forIdentifier: .heartRate)!,
-            HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
-            HKQuantityType.quantityType(forIdentifier: .distanceSwimming)!,
-            HKQuantityType.quantityType(forIdentifier: .distanceCycling)!,
-            HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-            HKQuantityType.quantityType(forIdentifier: .stepCount)!,
-            HKQuantityType.quantityType(forIdentifier: .swimmingStrokeCount)!,
-            HKObjectType.activitySummaryType()
-        ]
-        
-        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
-            
-        }
-        
-    }
+
+
+
     
     // MARK: - Session State Control
     

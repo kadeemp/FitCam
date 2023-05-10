@@ -12,7 +12,7 @@ import WatchKit
 struct FitCamApp: App {
     
     @StateObject var workoutManager = WorkoutManager()
-    @WKExtensionDelegateAdaptor(ExtensionDelegate.self) var delegate
+    @WKApplicationDelegateAdaptor(ExtensionDelegate.self) var delegate
     
     
     @SceneBuilder var body: some Scene {
