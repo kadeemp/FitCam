@@ -224,7 +224,6 @@ class WorkoutManager: NSObject, ObservableObject {
 //            print("error saving updated saved workout from sample data")
 //        }
     writeWorkoutToDatabase()
-
         count += 1
 //        print(savedWorkout)
     }
@@ -263,7 +262,6 @@ class WorkoutManager: NSObject, ObservableObject {
         session?.delegate = self
         builder?.delegate = self
         
-        
         let startDate = Date()
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate, completion: { success, error in
@@ -277,10 +275,6 @@ class WorkoutManager: NSObject, ObservableObject {
         }
         )
     }
-    
-
-
-
     
     // MARK: - Session State Control
     
@@ -308,6 +302,7 @@ class WorkoutManager: NSObject, ObservableObject {
         stopSampler()
         sendWorkoutStopRequest()
         showingSummaryView = true
+        
     }
 
     //MARK:- Workout Metrics

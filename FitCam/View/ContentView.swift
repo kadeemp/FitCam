@@ -28,11 +28,11 @@ struct ContentView: View {
                         })
                 }
             }
-            .navigationTitle("Saved Workouts")
             .onAppear {
                 cameraVC = CameraViewVC(videos: $videos)
             }
-        }
+        }            .navigationTitle("Saved Workouts")
+
         .fullScreenCover(isPresented: $isWorkoutSelected, content: {
             ZStack {
                 cameraVC

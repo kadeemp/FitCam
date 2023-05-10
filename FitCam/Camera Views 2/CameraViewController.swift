@@ -36,7 +36,6 @@ class CameraViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     var tempURL: URL? {
         let directory = NSTemporaryDirectory() as NSString
         if directory != "" {

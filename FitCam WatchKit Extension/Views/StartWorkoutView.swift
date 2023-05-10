@@ -46,7 +46,7 @@ struct StartWorkoutView: View {
 //                         try realm = Realm(configuration: config)
 //                           
 //                            try realm.write({
-//                                workoutManager.savedWorkout.videoURL = output.object as! String
+//                                workoutManager.savedWorkout.videoURL =
 //                                
 //                            })
 //                        } catch {
@@ -55,6 +55,7 @@ struct StartWorkoutView: View {
 //                    } else {
 //                        // Fallback on earlier versions
 //                    }
+                    workoutManager.savedWorkout.videoURL = output.object as! String
                     workoutManager.sendWorkoutData()
                     
                     print(workoutManager.savedWorkout,1)
