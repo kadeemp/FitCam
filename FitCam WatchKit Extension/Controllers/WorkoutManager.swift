@@ -142,12 +142,13 @@ class WorkoutManager: NSObject, ObservableObject {
 //            return}
         var date = Date().formatted(date: .abbreviated, time: .omitted)
         var time = Date().formatted(date: .omitted, time: .standard)
-        var datapoint = Datapoint2(type: "", time: "", id: .zero, datapoint: "")
+
         
         switch selectedWorkout {
         case .running:
             //heart rate
-            datapoint = Datapoint2(type: "Heart Rate", time: time, id: count, datapoint: String(heartRate))
+           let datapoint1 = Datapoint2(type: "Heart Rate", time: time, id: count, datapoint: String(heartRate))
+            savedWorkout.dataPoints.append(datapoint1)
 
 //            print("DataPoint Added: \(datapoint.self) \n")
 //                savedWorkout.dataPoints.append(datapoint)
@@ -155,8 +156,9 @@ class WorkoutManager: NSObject, ObservableObject {
             
 //            writeWorkoutToDatabase()
             //avg heart rate
-            datapoint = Datapoint2(type: "Average Heart Rate Heart Rate", time: time, id: count, datapoint: String(averageHeartRate))
-
+        
+            let datapoint2 = Datapoint2(type: "Average Heart Rate Heart Rate", time: time, id: count, datapoint: String(averageHeartRate))
+            savedWorkout.dataPoints.append(datapoint2)
 //            print("DataPoint Added: \(datapoint.self) \n")
 //                savedWorkout.dataPoints.append(datapoint)
                         
@@ -170,8 +172,8 @@ class WorkoutManager: NSObject, ObservableObject {
 //
 //            savedWorkout.dataPoints.append(datapoint)
             //distance
-            datapoint = Datapoint2(type: "Total Distance", time: time, id: count, datapoint: String(distance))
-    
+            let datapoint3 = Datapoint2(type: "Total Distance", time: time, id: count, datapoint: String(distance))
+            savedWorkout.dataPoints.append(datapoint3)
 //            print("DataPoint Added: \(datapoint.self) \n")
 //                savedWorkout.dataPoints.append(datapoint)
             
@@ -224,7 +226,6 @@ class WorkoutManager: NSObject, ObservableObject {
 //        } catch {
 //            print("error saving updated saved workout from sample data")
 //        }
-    writeWorkoutToDatabase()
         count += 1
 //        print(savedWorkout)
     }

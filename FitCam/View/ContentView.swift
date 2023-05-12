@@ -18,35 +18,48 @@ struct ContentView: View {
     }
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(Array(realmWrapper.workouts!), id: \.self) { workout in
-                    NavigationLink(
-                        destination: VideoPlayerView(workout: workout),
-                        label: {
-                            Text(workout.workoutType)
-                        })
-                }
-            }
-            .onAppear {
-                cameraVC = CameraViewVC()
-            }
-        }            .navigationTitle("Saved Workouts")
-
-        .fullScreenCover(isPresented: $isWorkoutSelected, content: {
-            ZStack {
-                cameraVC
-                cameraVC.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording")), perform: { output in
-                    print("Recording started")
-                    cameraVC!.startRecording()
-                }).onReceive(NotificationCenter.default.publisher(for: Notification.Name("StopRecording")), perform: { output in
-                    print("Recording stopped")
-                    cameraVC!.stopRecording()
-                    isWorkoutSelected = false
-                    //TODO:- send notificatoion
-                })
-            }
-        })
+          NavigationView {
+              List {
+                  ForEach(Array(realmWrapper.workouts!), id: \.self) { workout in
+                      NavigationLink(destination: VideoPlayerView(workout: workout)) {
+                          Text(workout.workoutType)
+                      }
+                      .swipeActions(edge: .trailing) {
+                          Button(action: {
+                              deleteWorkout(workout)
+                          }) {
+                              Label("Delete", systemImage: "trash")
+                          }
+                          .tint(.red)
+                      }
+                  }
+              }
+              .onAppear {
+                  cameraVC = CameraViewVC()
+              }
+          }
+          .navigationTitle("Saved Workouts")
+          .fullScreenCover(isPresented: $isWorkoutSelected) {
+              ZStack {
+                  cameraVC
+                  cameraVC.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording"))) { output in
+                      print("Recording started")
+                      cameraVC!.startRecording()
+                  }
+                  .onReceive(NotificationCenter.default.publisher(for: Notification.Name("StopRecording"))) { output in
+                      print("Recording stopped")
+                      cameraVC!.stopRecording()
+                      isWorkoutSelected = false
+                      // TODO: Send notification
+                  }
+              }
+          }
+      }
+    
+    
+    private func deleteWorkout(_ workout: SavedWorkout) {
+        realmWrapper.deleteWorkout(workout)
+        // Handle any additional logic after deleting the workout
     }
 }
 
@@ -67,11 +80,11 @@ struct VideoPlayerView: View {
         
         if let mainURL = URL(string: correctedPath) {
             self.player = AVPlayer(url: mainURL)
-            print("\n  \n Successfully created player with URL: \(mainURL.absoluteString)")
+
             
             let fileManager = FileManager.default
             if fileManager.fileExists(atPath: mainURL.path) {
-                print("File exists at path: \(mainURL.path)")
+                
             } else {
                 print("File does not exist at path: \(mainURL.path)")
             }
@@ -80,7 +93,6 @@ struct VideoPlayerView: View {
             self.player = AVPlayer()
         }
         if let playerItem = self.player.currentItem, let asset = playerItem.asset as? AVURLAsset {
-            print("Video URL: \(asset.url.absoluteString)")
         } else {
             print("Video URL is unknown.")
         }
@@ -123,6 +135,8 @@ struct VideoPlayerView: View {
                         playerViewModel.updateHeartRate()
 
                     }
+            }.onAppear {
+                playerViewModel.startTimer()
             }
         }
     }
@@ -139,6 +153,9 @@ class PlayerViewModel: ObservableObject {
     @Published var elapsedTime: TimeInterval = 0.0
     @Published var heartRate: Int?
     
+    var heartRateDataPoints: [Datapoint] = []
+    var heartRateCount = 0
+
     var elapsedTimeSinceWorkoutStartPublisher: Published<TimeInterval>.Publisher { $elapsedTimeSinceWorkoutStart }
 
     
@@ -151,10 +168,9 @@ class PlayerViewModel: ObservableObject {
             return
         }
         self.elapsedTimeSinceWorkoutStart = -workoutStartTime.timeIntervalSinceNow
-        startTimer()
     }
     
-    private func startTimer() {
+     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.updateElapsedTime()
             self?.updateHeartRate()
@@ -172,21 +188,43 @@ class PlayerViewModel: ObservableObject {
     }
     
     func updateHeartRate() {
-        guard let heartRateDataPoint = workout.dataPoints
-                .filter({ $0.type == "Heart Rate" })
-                .min(by: { datapointTimeInterval($0.time) < datapointTimeInterval($1.time) })
-        else {
-            heartRate = nil
+
+        if heartRateDataPoints.isEmpty {
+            for dataPoint in workout.dataPoints {
+                if dataPoint.type == "Heart Rate" {
+                    heartRateDataPoints.append(dataPoint)
+                }
+            }
+
+        }
+        let datapoint = heartRateDataPoints[heartRateCount]
+        heartRate = Int(Double(datapoint.datapoint)!) 
+        print(heartRate, datapoint.datapoint)
+        if heartRateCount == heartRateDataPoints.count {
+            timer?.invalidate()
             return
         }
+        heartRateCount += 1
         
-        // Parse the heart rate value from the datapoint string
-        if let heartRate = Double(heartRateDataPoint.datapoint) {
-            self.heartRate = Int(heartRate)
-        } else {
-            // Failed to parse heart rate, set to nil or handle accordingly
-            self.heartRate = nil
-        }
+
+//        guard let heartRateDataPoint = workout.dataPoints
+//                .filter({ $0.type == "Heart Rate" })
+//                .min(by: { datapointTimeInterval($0.time) ?? .greatestFiniteMagnitude < datapointTimeInterval($1.time) ?? .greatestFiniteMagnitude })
+//
+//
+//        else {
+//            print("failed to find datapoint")
+//            heartRate = nil
+//            return
+//        }
+//
+//        // Parse the heart rate value from the datapoint string
+//        if let heartRate = Double(heartRateDataPoint.datapoint) {
+//            self.heartRate = Int(heartRate)
+//        } else {
+//            // Failed to parse heart rate, set to nil or handle accordingly
+//            self.heartRate = nil
+//        }
     }
 
     private func datapointTimeInterval(_ datapointTime: String) -> TimeInterval {

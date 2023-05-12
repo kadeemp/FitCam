@@ -13,6 +13,20 @@ final class RealmWrapper: ObservableObject {
     @Published var workouts: Results<SavedWorkout>?
 
     var realm: Realm!
+    
+    func deleteWorkout(_ workout: SavedWorkout) {
+        guard let realm = realm else {
+            return
+        }
+
+        do {
+            try realm.write {
+                realm.delete(workout)
+            }
+        } catch {
+            print("Failed to delete workout: \(error)")
+        }
+    }
 
     init() {
         
