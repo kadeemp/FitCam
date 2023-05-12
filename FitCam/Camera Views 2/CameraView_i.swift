@@ -7,37 +7,35 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 @available(iOS 16.0, *)
 struct CameraViewVC: UIViewControllerRepresentable {
 
   typealias UIViewControllerType = CameraViewController
-  private let cameraViewController: CameraViewController
-
-    init(videos:Binding<[URL]> ) {
-      
-      cameraViewController = CameraViewController(videos: videos)
-  }
-
+ 
   func makeUIViewController(context: Context) -> CameraViewController {
-    cameraViewController
+      CameraViewController.shared
   }
 
   func updateUIViewController(_ uiViewController: CameraViewController, context: Context) {
-
   }
 
   public func switchCamera() {
-    cameraViewController.switchCamera()
+      CameraViewController.shared.switchCamera()
   }
 
   public func startRecording() {
-    cameraViewController.captureMovie()
+      CameraViewController.shared.captureMovie()
   }
 
   public func stopRecording() {
-    cameraViewController.stopRecording()
+      CameraViewController.shared.stopRecording()
   }
+    public func activeInput() -> AVCaptureDeviceInput? {
+        var b = CameraViewController.shared.activeInput
+        return b
+    }
 
 
 

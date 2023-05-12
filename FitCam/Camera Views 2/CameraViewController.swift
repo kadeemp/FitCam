@@ -16,25 +16,30 @@ class CameraViewController: UIViewController {
     
     let captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var activeInput: AVCaptureDeviceInput!
+    var activeInput: AVCaptureDeviceInput? {
+        didSet {
+            print("activeInput changed to: \(activeInput)")
+        }
+    }
     let movieOutput = AVCaptureMovieFileOutput()
     
+    static let shared = CameraViewController()
+
     
-    @Binding var videos: [URL]
     
-    init(videos: Binding<[URL]>) {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let workoutVideosDirectory = documentsDirectory.appendingPathComponent("WorkoutVideos")
-        let videosURLs = try? FileManager.default.contentsOfDirectory(at: workoutVideosDirectory, includingPropertiesForKeys: nil, options: [])
-        let videos2 = videosURLs ?? []
-        print("the value of videoURLs is \(videosURLs)")
-        _videos = Binding.constant(videos2)
-        super.init(nibName: nil, bundle: nil)
-    }
+//    @Binding var videos: [URL]
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(videos: Binding<[URL]>) {
+//        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let workoutVideosDirectory = documentsDirectory.appendingPathComponent("WorkoutVideos")
+//        let videosURLs = try? FileManager.default.contentsOfDirectory(at: workoutVideosDirectory, includingPropertiesForKeys: nil, options: [])
+//        let videos2 = videosURLs ?? []
+//        print("the value of videoURLs is \(videosURLs)")
+////        _videos = Binding.constant(videos2)
+////        super.init(nibName: nil, bundle: nil)
+//    }
+    
+
     
     var tempURL: URL? {
         let directory = NSTemporaryDirectory() as NSString
@@ -45,12 +50,14 @@ class CameraViewController: UIViewController {
         return nil
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
         setupSession()
         setupPreview()
         startSession()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,14 +78,25 @@ class CameraViewController: UIViewController {
             for input in [videoInput, audioInput] {
                 if captureSession.canAddInput(input) {
                     captureSession.addInput(input)
+                } else {
+                    print("")
                 }
             }
-            activeInput = videoInput
+            self.activeInput = videoInput
+            print("active input has been set\(self.activeInput)")
+            if captureSession.canAddOutput(movieOutput) {
+                captureSession.addOutput(movieOutput)
+            } else {
+                print("FAILED TO ADD OUTPUT")
+            }
+            
         } catch {
             print("Error setting device input: \(error)")
             return
         }
-        captureSession.addOutput(movieOutput)
+
+        
+
         captureSession.commitConfiguration()
     }
     
@@ -90,22 +108,7 @@ class CameraViewController: UIViewController {
         return devices.first
     }
     
-    public func switchCamera() {
-        let position: AVCaptureDevice.Position = (activeInput.device.position == .back) ? .front : .back
-        guard let device = camera(for: position) else {
-            return
-        }
-        captureSession.beginConfiguration()
-        captureSession.removeInput(activeInput)
-        do {
-            activeInput = try AVCaptureDeviceInput(device: device)
-        } catch {
-            print("error: \(error.localizedDescription)")
-            return
-        }
-        captureSession.addInput(activeInput)
-        captureSession.commitConfiguration()
-    }
+    
     
     func setupPreview() {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -131,13 +134,18 @@ class CameraViewController: UIViewController {
     }
     
     public func captureMovie() {
-        guard let connection = movieOutput.connection(with: .video) else {
+       if let connection = movieOutput.connection(with: .video)  {
+           if connection.isVideoStabilizationSupported {
+               connection.preferredVideoStabilizationMode = .auto
+           }
+        }
+//        
+        guard let deviceInput = activeInput else {
+            print("activeInput is nil")
             return
         }
-        if connection.isVideoStabilizationSupported {
-            connection.preferredVideoStabilizationMode = .auto
-        }
-        let device = activeInput.device
+        
+        let device = deviceInput.device
         if device.isSmoothAutoFocusEnabled {
             do {
                 try device.lockForConfiguration()
@@ -165,11 +173,30 @@ class CameraViewController: UIViewController {
     }
     
     public func stopRecording() {
+        print("")
         if movieOutput.isRecording {
             movieOutput.stopRecording()
         }
     }
     
+
+    public func switchCamera() {
+        //TODO:- fix this so that it saffely unwraps
+        let position: AVCaptureDevice.Position = (activeInput!.device.position == .back) ? .front : .back
+        guard let device = camera(for: position) else {
+            return
+        }
+        captureSession.beginConfiguration()
+        captureSession.removeInput(activeInput!)
+        do {
+            activeInput = try AVCaptureDeviceInput(device: device)
+        } catch {
+            print("error: \(error.localizedDescription)")
+            return
+        }
+        captureSession.addInput(activeInput!)
+        captureSession.commitConfiguration()
+    }
 }
 
 @available(iOS 16.0, *)
@@ -179,8 +206,8 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
             print("error recording Output: \(error)")
         } else {
             
-            videos.append(outputFileURL)
-            $videos.wrappedValue = videos
+//            videos.append(outputFileURL)
+//            $videos.wrappedValue = videos
             
             
             

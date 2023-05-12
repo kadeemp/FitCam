@@ -14,7 +14,7 @@ struct ContentView: View {
 
     init(isWorkoutSelected: Binding<Bool>) {
         _isWorkoutSelected = isWorkoutSelected
-        _cameraVC = State(initialValue: CameraViewVC(videos: $videos))
+        _cameraVC = State(initialValue: CameraViewVC())
     }
 
     var body: some View {
@@ -29,25 +29,22 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                cameraVC = CameraViewVC(videos: $videos)
+                cameraVC = CameraViewVC()
             }
         }            .navigationTitle("Saved Workouts")
 
         .fullScreenCover(isPresented: $isWorkoutSelected, content: {
             ZStack {
                 cameraVC
-                cameraVC?.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording")), perform: { output in
+                cameraVC.onReceive(NotificationCenter.default.publisher(for: Notification.Name("StartRecording")), perform: { output in
                     print("Recording started")
-                    cameraVC?.startRecording()
+                    cameraVC!.startRecording()
                 }).onReceive(NotificationCenter.default.publisher(for: Notification.Name("StopRecording")), perform: { output in
                     print("Recording stopped")
-                    cameraVC?.stopRecording()
+                    cameraVC!.stopRecording()
+                    isWorkoutSelected = false
+                    //TODO:- send notificatoion
                 })
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("X")
-                }
             }
         })
     }

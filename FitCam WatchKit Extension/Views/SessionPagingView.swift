@@ -9,7 +9,6 @@ import SwiftUI
 import WatchKit
 
 struct SessionPagingView: View {
-    
     @State private var selection: Tab = .metrics
     @EnvironmentObject var workoutManager: WorkoutManager
     
@@ -26,14 +25,19 @@ struct SessionPagingView: View {
         .navigationTitle(workoutManager.selectedWorkout?.name ?? "")
         .navigationBarHidden(selection == .nowPlaying)
         .navigationBarBackButtonHidden(true)
-        .onChange(of: workoutManager.running) { _ in
-            displayMetricsView()
+        .onChange(of: workoutManager.running) { running in
+            if !running {
+                withAnimation {
+                    dismissView()
+                }
+                
+            }
         }
     }
-    private func displayMetricsView() {
-        withAnimation {
-            selection = .metrics
-        }
+    
+    private func dismissView() {
+        // Change the selection to a different tab to dismiss the view
+        selection = .controls
     }
 }
 

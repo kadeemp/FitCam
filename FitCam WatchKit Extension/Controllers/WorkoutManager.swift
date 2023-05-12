@@ -16,6 +16,7 @@ class WorkoutManager: NSObject, ObservableObject {
     
     var timer = Timer()
 //    var realm:Realm!
+
     var savedWorkout:SavedWorkout2!
  
     func setupRealm() {
@@ -148,16 +149,16 @@ class WorkoutManager: NSObject, ObservableObject {
             //heart rate
             datapoint = Datapoint2(type: "Heart Rate", time: time, id: count, datapoint: String(heartRate))
 
-                print("DataPoint Added: \(datapoint) \n")
-                savedWorkout.dataPoints.append(datapoint)
+//            print("DataPoint Added: \(datapoint.self) \n")
+//                savedWorkout.dataPoints.append(datapoint)
             
             
 //            writeWorkoutToDatabase()
             //avg heart rate
             datapoint = Datapoint2(type: "Average Heart Rate Heart Rate", time: time, id: count, datapoint: String(averageHeartRate))
 
-                print("DataPoint Added: \(datapoint) \n")
-                savedWorkout.dataPoints.append(datapoint)
+//            print("DataPoint Added: \(datapoint.self) \n")
+//                savedWorkout.dataPoints.append(datapoint)
                         
 //            writeWorkoutToDatabase()
 //            //pace
@@ -171,8 +172,8 @@ class WorkoutManager: NSObject, ObservableObject {
             //distance
             datapoint = Datapoint2(type: "Total Distance", time: time, id: count, datapoint: String(distance))
     
-                print("DataPoint Added: \(datapoint) \n")
-                savedWorkout.dataPoints.append(datapoint)
+//            print("DataPoint Added: \(datapoint.self) \n")
+//                savedWorkout.dataPoints.append(datapoint)
             
             
 //            writeWorkoutToDatabase()
@@ -242,9 +243,10 @@ class WorkoutManager: NSObject, ObservableObject {
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     
-   public func startWorkout(workoutType:HKWorkoutActivityType) {
+    public func startWorkout(workoutType:HKWorkoutActivityType) {
        
            startSampler()
+            running = true
 
        let configuration = HKWorkoutConfiguration()
         configuration.activityType = workoutType
@@ -299,9 +301,21 @@ class WorkoutManager: NSObject, ObservableObject {
     
     func endWorkout() {
         session?.end()
+        running = false
         stopSampler()
         sendWorkoutStopRequest()
         showingSummaryView = true
+        
+    }
+    func resetWorkout() {
+        selectedWorkout = nil
+        builder = nil
+        session = nil
+        workout = nil
+        activeEnergy = 0
+        averageHeartRate = 0
+        heartRate = 0
+        distance = 0
         
     }
 
@@ -317,7 +331,6 @@ class WorkoutManager: NSObject, ObservableObject {
         guard let statistics = statistics else {
             return
         }
-        print(count,Date())
         count += 1
         DispatchQueue.main.async {
             switch statistics.quantityType {
@@ -343,35 +356,19 @@ class WorkoutManager: NSObject, ObservableObject {
             }
         }
     }
-    
-    func resetWorkout() {
-        selectedWorkout = nil
-        builder = nil
-        session = nil
-        workout = nil
-        activeEnergy = 0
-        averageHeartRate = 0
-        heartRate = 0
-        distance = 0
-        
-    }
 }
-
 
 // MARK: - HKWorkoutSessionDelegate
 
 extension WorkoutManager: HKWorkoutSessionDelegate {
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-        
     }
-    
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
         
         DispatchQueue.main.async {
             self.running = toState == .running
         }
-        
         // Wait for the session to transition states before ending the builder.
 
         if toState == .ended {
@@ -380,12 +377,10 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
                 self.builder?.finishWorkout(completion: { workout, error in
                     DispatchQueue.main.async {
                         self.workout = workout
-                        
                     }
                 })
         }
     }
-    
 }
 }
 extension WorkoutManager: HKLiveWorkoutBuilderDelegate {

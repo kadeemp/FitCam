@@ -36,7 +36,6 @@
 		F46A52DE28BBD027007C5C68 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A52DD28BBD027007C5C68 /* WorkoutManager.swift */; };
 		F46A52E228BBD827007C5C68 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46A52E128BBD827007C5C68 /* HealthKit.framework */; };
 		F477AC3328D819FA00E29A1F /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3228D819FA00E29A1F /* FrameView.swift */; };
-		F477AC3428D819FA00E29A1F /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC2F28D819FA00E29A1F /* ControlView.swift */; };
 		F477AC3528D819FA00E29A1F /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC2E28D819FA00E29A1F /* ToggleButton.swift */; };
 		F477AC3728D819FA00E29A1F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3028D819FA00E29A1F /* ErrorView.swift */; };
 		F477AC3A28D81A2800E29A1F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3928D81A2800E29A1F /* ContentViewModel.swift */; };
@@ -45,7 +44,6 @@
 		F477AC4128D820FC00E29A1F /* FrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC3E28D820FC00E29A1F /* FrameManager.swift */; };
 		F477AC4328D8262A00E29A1F /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F477AC4228D8262A00E29A1F /* CGImageExtension.swift */; };
 		F47BDCB528CAC01A007AA302 /* StartWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */; };
-		F48CD6802A02D79B002F4A80 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CD67F2A02D79B002F4A80 /* VideoPlayerView.swift */; };
 		F48CD6822A03067A002F4A80 /* RealmWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CD6812A03067A002F4A80 /* RealmWrapper.swift */; };
 		F48CD6842A033481002F4A80 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CD6832A033481002F4A80 /* RealmManager.swift */; };
 		F4CC06AC2A06D31500E5133B /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CC06AB2A06D31500E5133B /* CameraViewModel.swift */; };
@@ -122,7 +120,6 @@
 		F46A52DF28BBD827007C5C68 /* FitCam WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FitCam WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		F46A52E128BBD827007C5C68 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		F477AC2E28D819FA00E29A1F /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
-		F477AC2F28D819FA00E29A1F /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		F477AC3028D819FA00E29A1F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		F477AC3228D819FA00E29A1F /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
 		F477AC3928D81A2800E29A1F /* ContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
@@ -131,7 +128,6 @@
 		F477AC3E28D820FC00E29A1F /* FrameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameManager.swift; sourceTree = "<group>"; };
 		F477AC4228D8262A00E29A1F /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
 		F47BDCB428CAC01A007AA302 /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
-		F48CD67F2A02D79B002F4A80 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		F48CD6812A03067A002F4A80 /* RealmWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmWrapper.swift; sourceTree = "<group>"; };
 		F48CD6832A033481002F4A80 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		F4A70AB828DA8B7A0080E786 /* FitCam WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FitCam WatchKit App.entitlements"; sourceTree = "<group>"; };
@@ -287,11 +283,9 @@
 			children = (
 				F46A529428BAEC49007C5C68 /* FitCamApp.swift */,
 				F46A529628BAEC49007C5C68 /* ContentView.swift */,
-				F477AC2F28D819FA00E29A1F /* ControlView.swift */,
 				F477AC3028D819FA00E29A1F /* ErrorView.swift */,
 				F477AC3228D819FA00E29A1F /* FrameView.swift */,
 				F477AC2E28D819FA00E29A1F /* ToggleButton.swift */,
-				F48CD67F2A02D79B002F4A80 /* VideoPlayerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -569,7 +563,6 @@
 				F477AC4028D820FC00E29A1F /* CameraError.swift in Sources */,
 				F477AC3528D819FA00E29A1F /* ToggleButton.swift in Sources */,
 				F4E5DEA528DBA7EE00DB5565 /* Datapoint.swift in Sources */,
-				F48CD6802A02D79B002F4A80 /* VideoPlayerView.swift in Sources */,
 				F4EE5EBE28CD64FC00C9EF92 /* AppDelegate.swift in Sources */,
 				F48CD6822A03067A002F4A80 /* RealmWrapper.swift in Sources */,
 				F477AC3F28D820FC00E29A1F /* CameraManager.swift in Sources */,
@@ -581,7 +574,6 @@
 				F4CC06AC2A06D31500E5133B /* CameraViewModel.swift in Sources */,
 				F4E5DEA328DBA7CC00DB5565 /* SavedWorkout.swift in Sources */,
 				F46A529528BAEC49007C5C68 /* FitCamApp.swift in Sources */,
-				F477AC3428D819FA00E29A1F /* ControlView.swift in Sources */,
 				F48CD6842A033481002F4A80 /* RealmManager.swift in Sources */,
 				F477AC3728D819FA00E29A1F /* ErrorView.swift in Sources */,
 				F477AC4328D8262A00E29A1F /* CGImageExtension.swift in Sources */,

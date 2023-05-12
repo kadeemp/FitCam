@@ -110,11 +110,7 @@ class AppDelegate:NSObject,ObservableObject, UIApplicationDelegate, WCSessionDel
                     replyHandler([:])
                     return
                 }
-        var update:SavedWorkout?
-        if let update = message["update"] as? SavedWorkout  {
 
-            print("saved workout data \(update)")
-        }
         
         let notify = NotificationCenter.default
         

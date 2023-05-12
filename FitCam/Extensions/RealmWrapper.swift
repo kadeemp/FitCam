@@ -27,9 +27,15 @@ final class RealmWrapper: ObservableObject {
         do {
             self.realm =  RealmManager.shared.getRealm()
 
-            print("realm fileurl:  \(self.realm.configuration.fileURL) ")
+//            print("realm fileurl:  \(self.realm.configuration.fileURL) ")
             workouts = self.realm.objects(SavedWorkout.self)
             print("list of workouts: \n \(workouts)")
+            if let workouts = workouts {
+                for workout in workouts {
+                    print(workout)
+                }
+            }
+
         } catch {
             fatalError("failed to setup configuration. Error: \(error)")
         }
