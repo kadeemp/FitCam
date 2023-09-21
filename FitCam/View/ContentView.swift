@@ -149,6 +149,8 @@ class PlayerViewModel: ObservableObject {
     private let calendar = Calendar.current
     var timer: Timer?
     
+    @State private var formattedElapsedTime: String = ""
+
     @Published var elapsedTimeSinceWorkoutStart: TimeInterval = 0.0
     @Published var elapsedTime: TimeInterval = 0.0
     @Published var heartRate: Int?
@@ -178,13 +180,29 @@ class PlayerViewModel: ObservableObject {
         timer?.tolerance = 0.1
     }
     
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func formatTimeInterval(_ timeInterval: TimeInterval) -> String {
+        // Format the time interval as desired (e.g., hours:minutes:seconds)
+        let hours = Int(timeInterval / 3600)
+        let minutes = Int((timeInterval.truncatingRemainder(dividingBy: 3600)) / 60)
+        let seconds = Int(timeInterval.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
      func updateElapsedTime() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm:ss a"
-        guard let workoutStartTime = dateFormatter.date(from: workout.date) else {
-            return
-        }
-        elapsedTime = workoutStartTime.timeIntervalSinceNow
+         let dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm:ss a"
+         
+         guard let workoutStartTime = dateFormatter.date(from: workout.date) else {
+             return
+         }
+         
+         let elapsedTime = Date().timeIntervalSince( workoutStartTime)
+         formattedElapsedTime = formatTimeInterval(elapsedTime)
     }
     
     func updateHeartRate() {
